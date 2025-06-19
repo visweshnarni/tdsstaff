@@ -7,14 +7,13 @@ export default function SignupForm() {
   const [isSignup, setIsSignup] = useState(true);
 
   return (
-    <div className="flex min-h-screen items-center justify-center py-20 px-6 bg-gradient-to-r from-[#09e5ab] to-[#e6fff5]
-">
+    <div className="flex min-h-screen items-center justify-center py-20 px-6 bg-gradient-to-r from-[#09e5ab] to-[#e6fff5]">
       <div className="flex flex-col lg:flex-row items-stretch w-full max-w-6xl bg-white rounded-2xl shadow-md overflow-hidden">
         
         {/* Left side - Form */}
         <div className="w-full lg:w-1/2 p-6 lg:p-10 flex items-center justify-center">
           <form className="space-y-4 w-full max-w-md">
-            <h1 className="text-2xl font-bold text-[#09E5AB] mb-6">
+            <h1 className="text-2xl font-bold text-[#00694A] mb-6">
               {isSignup ? 'Sign Up' : 'Login'}
             </h1>
 
@@ -119,7 +118,7 @@ export default function SignupForm() {
                 <input id="agree" type="checkbox" required />
                 <label htmlFor="agree" className="text-sm font-normal">
                   I agree to all{' '}
-                  <span className="text-[#09E5AB] cursor-pointer hover:underline">
+                  <span className="text-[#00694A] cursor-pointer hover:underline">
                     Read the T&C of TDC
                   </span>
                 </label>
@@ -128,7 +127,7 @@ export default function SignupForm() {
 
             <button
               type="submit"
-              className="w-full p-2 font-semibold rounded text-white transition bg-[#09E5AB] hover:bg-[#07c99a] hover:shadow-md"
+              className="w-full p-2 font-semibold rounded text-white transition bg-[#00694A] hover:bg-[#008562] hover:shadow-md"
             >
               {isSignup ? 'Sign Up' : 'Login'}
             </button>
@@ -137,7 +136,7 @@ export default function SignupForm() {
               <span>{isSignup ? 'Already have an account?' : "Don’t have an account?"}</span>{' '}
               <button
                 onClick={(e) => { e.preventDefault(); setIsSignup((prev) => !prev); }}
-                className="text-[#09E5AB] font-semibold ml-1 hover:underline"
+                className="text-[#00694A] font-semibold ml-1 hover:underline"
               >
                 {isSignup ? 'Login now' : 'Signup now'}
               </button>

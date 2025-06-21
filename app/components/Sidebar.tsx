@@ -2,29 +2,44 @@
 
 import { useState } from 'react';
 import Image from 'next/image';
+import { ChevronDown, ChevronUp } from 'lucide-react';
 
 const menuItems = [
+  { key: 'applicationForm', label: 'Application Form' },
+  { key: 'noteFromCouncil', label: 'Note from Council' },
   { key: 'myProfile', label: 'My Profile' },
-  { key: 'editProfile', label: 'Edit Profile' },
+  { key: 'myCertificate', label: 'My Certificate' },
   { key: 'renewal', label: 'Renewal' },
-  { key: 'gsc', label: 'Good Standing Certificate' },
+  { key: 'gsc', label: 'Good Standing Certificates' },
   { key: 'noc', label: 'No Objection Certificate' },
-  { key: 'bookAppointment', label: 'Book Appointment' },
-  { key: 'bookGSCAppointment', label: 'Book GSC Appointment' },
-  { key: 'bookNOCAppointment', label: 'Book NOC Appointment' },
-  { key: 'registrationForeign', label: 'Registration - DCI Recognized Foreign Degree' },
-  { key: 'mdsRegistration', label: 'MDS Registration' },
-  { key: 'updateEmailMobile', label: 'Update Email And Mobile' },
-  { key: 'myCertificates', label: 'My Certificates' },
+  {
+    key: 'appointments',
+    label: 'Appointment',
+    isDropdown: true,
+    children: [
+      { key: 'appointmentRegistration', label: 'Registration' },
+      { key: 'appointmentRenewal', label: 'Renewal (Tatkal)' },
+      { key: 'appointmentGSC', label: 'Good Standing Certificates' },
+      { key: 'appointmentNOC', label: 'No Objection Certificate' },
+    ],
+  },
+  { key: 'payments', label: 'Payments' },
+  { key: 'announcements', label: 'Announcements' },
+  { key: 'events', label: 'Events' },
 ];
 
 export default function Dashboard() {
   const [activeKey, setActiveKey] = useState('myProfile');
+  const [dropdownOpen, setDropdownOpen] = useState(false);
 
   const renderContent = () => (
     <div className="bg-white rounded-lg p-6 shadow-sm border">
       <h2 className="text-lg font-semibold text-gray-800 capitalize mb-4">
-        {menuItems.find((item) => item.key === activeKey)?.label}
+        {
+          menuItems
+            .flatMap((item) => (item.children ? [item, ...item.children] : item))
+            .find((item) => item.key === activeKey)?.label
+        }
       </h2>
       <p className="text-gray-600">Content for: {activeKey}</p>
     </div>
@@ -52,19 +67,48 @@ export default function Dashboard() {
 
           {/* Menu */}
           <div className="space-y-1">
-            {menuItems.map((item) => (
-              <button
-                key={item.key}
-                onClick={() => setActiveKey(item.key)}
-                className={`w-full flex items-center px-3 py-2 rounded-md text-sm font-medium text-left ${
-                  activeKey === item.key
-                    ? 'bg-blue-100 text-[#00694A] font-semibold'
-                    : 'hover:bg-gray-100 text-gray-700'
-                }`}
-              >
-                {item.label}
-              </button>
-            ))}
+            {menuItems.map((item) =>
+              item.isDropdown ? (
+                <div key={item.key}>
+                  <button
+                    onClick={() => setDropdownOpen(!dropdownOpen)}
+                    className="w-full flex items-center justify-between px-3 py-2 rounded-md text-sm font-medium text-left hover:bg-gray-100 text-gray-700"
+                  >
+                    <span>{item.label}</span>
+                    {dropdownOpen ? <ChevronUp size={16} /> : <ChevronDown size={16} />}
+                  </button>
+                  {dropdownOpen && (
+                    <div className="pl-4 mt-1 space-y-1">
+                      {item.children.map((child) => (
+                        <button
+                          key={child.key}
+                          onClick={() => setActiveKey(child.key)}
+                          className={`block w-full text-left px-3 py-1 rounded-md text-sm hover:bg-blue-100 ${
+                            activeKey === child.key
+                              ? 'bg-blue-200 text-[#00694A] font-semibold'
+                              : 'text-gray-700'
+                          }`}
+                        >
+                          {child.label}
+                        </button>
+                      ))}
+                    </div>
+                  )}
+                </div>
+              ) : (
+                <button
+                  key={item.key}
+                  onClick={() => setActiveKey(item.key)}
+                  className={`w-full text-left px-3 py-2 rounded-md text-sm font-medium ${
+                    activeKey === item.key
+                      ? 'bg-blue-100 text-[#00694A] font-semibold'
+                      : 'hover:bg-gray-100 text-gray-700'
+                  }`}
+                >
+                  {item.label}
+                </button>
+              )
+            )}
           </div>
         </aside>
 

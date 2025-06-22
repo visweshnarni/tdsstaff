@@ -3,10 +3,12 @@
 import React, { ReactElement } from 'react';
 import { UseFormRegister, FieldErrors } from 'react-hook-form';
 
-export interface ConditionalFieldsProps {
+
+
+interface ConditionalFieldsProps {
   category: string;
-  register: UseFormRegister<any>;
-  errors: FieldErrors;
+  register: UseFormRegister<any>; 
+  errors: FieldErrors<any>; 
 }
 
 const Label = ({ text, required }: { text: string; required?: boolean }) => (

@@ -31,11 +31,10 @@ export default function ApplicationForm() {
   const {
     register,
     handleSubmit,
-    control,
     formState: { errors },
-  } = useForm({ resolver: zodResolver(baseSchema) });
+  } = useForm<z.infer<typeof baseSchema>>({ resolver: zodResolver(baseSchema) });
 
-  const onSubmit = (data: any) => {
+  const onSubmit = (data: z.infer<typeof baseSchema>) => {
     console.log(data);
   };
 
@@ -78,7 +77,7 @@ export default function ApplicationForm() {
         </div>
 
         <div>
-          <label className="block font-medium mb-1">Father's Name <span className="text-red-500">*</span></label>
+          <label className="block font-medium mb-1">Father&apos;s Name <span className="text-red-500">*</span></label>
           <input {...register('fatherName')} className="w-full border p-2 rounded" />
           {errors.fatherName && <p className="text-red-500 text-sm">{errors.fatherName.message}</p>}
         </div>

@@ -27,7 +27,7 @@ export default function DashboardHeader() {
       {/* Left: Logo */}
       <div className="flex items-center space-x-3">
         <Image
-          src="/images/header-logo.png"
+          src="/images/header-logo1.png"
           alt="Telangana Dental Council"
           width={180}
           height={40}

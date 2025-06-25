@@ -1,6 +1,25 @@
+// 'use client';
+// import ApplicationForm from "@/app/components/dashboard/ApplicationForm";
+// // import MultiStepForm from "@/app/components/dashboard/ApplicationForm/MultiStepForm";
+
+// export default function ApplicationFormPage() {
+//   <>
+//     <ApplicationForm />;
+//     {/* <MultiStepForm /> */}
+//   </>
+// }
+
 'use client';
-import ApplicationForm from "@/app/components/dashboard/ApplicationForm";
+
+import MultiStepForm from "@/app/components/dashboard/ApplicationForm/MultiStepForm";
+
+// import ApplicationForm from "@/app/components/dashboard/ApplicationForm";
 
 export default function ApplicationFormPage() {
-  return <ApplicationForm />;
+  return (
+    <>
+      {/* <ApplicationForm /> */}
+      <MultiStepForm />
+    </>
+  );
 }

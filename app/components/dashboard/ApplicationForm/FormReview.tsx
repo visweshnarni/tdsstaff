@@ -14,7 +14,7 @@ interface FormReviewProps {
   onBack: () => void;
 }
 
-const fieldLabels: Record<string, string> = {
+const fieldLabels: Record<keyof FormData, string> = {
   registrationCategory: "Registration Category",
   fullName: "Full Name",
   gender: "Gender",
@@ -47,7 +47,6 @@ const fieldLabels: Record<string, string> = {
   intern_upload: "Internship Certificate",
   pr_certificate_upload: "TDC Provisional Registration Certificate",
   bds_affidavit_upload: "Affidavit (BDS)",
-
   mds_university_name: "University Address (MDS)",
   mds_qualification_date: "Qualification Month/Year (MDS)",
   mds_college_name: "College Address (MDS)",
@@ -59,7 +58,7 @@ const fieldLabels: Record<string, string> = {
   mds_affidavit: "Affidavit (MDS)",
 };
 
-const groupOrder = {
+const groupOrder: Record<string, (keyof FormData)[]> = {
   "Basic Details": [
     "registrationCategory",
     "fullName",
@@ -109,13 +108,13 @@ const groupOrder = {
   ],
 };
 
-const isFile = (val: any) =>
+const isFile = (val: unknown): val is File =>
   typeof val === "object" &&
   val !== null &&
-  (val instanceof File || (val.name && val.type && val.size));
+  val instanceof File;
 
 const FormReview: React.FC<FormReviewProps> = ({ data, onNext, onBack }) => {
-  const renderValue = (key: string, value: any) => {
+  const renderValue = (key: keyof FormData, value: unknown) => {
     if (isFile(value)) {
       const url = URL.createObjectURL(value);
       return (
@@ -127,63 +126,77 @@ const FormReview: React.FC<FormReviewProps> = ({ data, onNext, onBack }) => {
           className="flex items-center gap-2 text-blue-600 underline"
         >
           <FileText className="h-4 w-4 text-red-600" />
-          <span>{value.name} ({(value.size / 1024).toFixed(1)} KB)</span>
+          <span>
+            {value.name} ({(value.size / 1024).toFixed(1)} KB)
+          </span>
         </a>
       );
     }
 
-    if (typeof value === "string" && key.includes("date")) {
+    if (
+      typeof value === "string" &&
+      typeof key === "string" &&
+      key.toLowerCase().includes("date")
+    ) {
       const date = new Date(value);
       return date.toLocaleDateString("en-IN");
     }
 
-    return value;
+    return <span>{value as string}</span>;
   };
 
   return (
     <div className="bg-[#f8f9fa] p-6 rounded-md shadow-sm border border-gray-200">
-    <div className="space-y-6">
-      {Object.entries(groupOrder).map(([groupName, keys]) => {
-        const hasAny = keys.some((key) => data[key]);
-        if (!hasAny) return null;
+      <div className="space-y-6">
+        {Object.entries(groupOrder).map(([groupName, keys]) => {
+          const hasAny = keys.some((key) => typeof key === "string" && data[key]);
+          if (!hasAny) return null;
 
-        return (
-          <div key={groupName} className="bg-white p-6 rounded shadow-sm border border-gray-200">
-            <h3 className="text-lg font-semibold text-gray-700 mb-4">{groupName}</h3>
-            <dl className="grid grid-cols-1 md:grid-cols-2 gap-x-6 gap-y-4 text-sm">
-              {keys.map((key) => {
-                const value = data[key as string];
-                if (!value) return null;
-                return (
-                  <div key={key}>
-                    <dt className="font-medium text-gray-600">{fieldLabels[key] || key}</dt>
-                    <dd className="text-gray-800">{renderValue(key, value)}</dd>
-                  </div>
-                );
-              })}
-            </dl>
-          </div>
-        );
-      })}
+          return (
+            <div
+              key={groupName}
+              className="bg-white p-6 rounded shadow-sm border border-gray-200"
+            >
+              <h3 className="text-lg font-semibold text-gray-700 mb-4">
+                {groupName}
+              </h3>
+              <dl className="grid grid-cols-1 md:grid-cols-2 gap-x-6 gap-y-4 text-sm">
+                {keys.map((key) => {
+                  if (typeof key !== "string") return null;
+                  const value = data[key];
+                  if (!value) return null;
+                  return (
+                    <div key={key}>
+                      <dt className="font-medium text-gray-600">
+                        {fieldLabels[key] || key}
+                      </dt>
+                      <dd className="text-gray-800">{renderValue(key, value)}</dd>
+                    </div>
+                  );
+                })}
+              </dl>
+            </div>
+          );
+        })}
 
-      <div className="flex justify-between pt-6">
-        <Button
-          type="button"
-          onClick={onBack}
-          className="bg-[#8B0000] hover:bg-[#6b0000] text-white font-semibold px-6 py-2 rounded shadow-md"
-        >
-          Back
-        </Button>
-        <Button
-          type="button"
-          onClick={onNext}
-          className="bg-[#00694A] hover:bg-[#004d36] text-white font-semibold px-6 py-2 rounded shadow-md"
-        >
-          Save & Continue
-        </Button>
+        <div className="flex justify-between pt-6">
+          <Button
+            type="button"
+            onClick={onBack}
+            className="bg-[#8B0000] hover:bg-[#6b0000] text-white font-semibold px-6 py-2 rounded shadow-md"
+          >
+            Back
+          </Button>
+          <Button
+            type="button"
+            onClick={onNext}
+            className="bg-[#00694A] hover:bg-[#004d36] text-white font-semibold px-6 py-2 rounded shadow-md"
+          >
+            Save & Continue
+          </Button>
+        </div>
       </div>
-      </div>
-      </div>
+    </div>
   );
 };
 

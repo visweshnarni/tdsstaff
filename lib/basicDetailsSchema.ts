@@ -50,17 +50,17 @@ export const basicDetailsSchema = z.object({
         .min(1, "Aadhaar number is required")
         .regex(/^\d{12}$/, "Aadhaar must be 12 digits"),
       
-      // // PAN Card Upload
+      // PAN Card Upload
       // panCard: z
       //   .custom<File>(
-        //     (file) =>
-        //       file instanceof File &&
-        //       file.type === "application/pdf" &&
-        //       file.size <= 5 * 1024 * 1024, // Max 5MB
-        //     {
-          //       message: "PAN Card PDF is required, must be a PDF, and less than 5MB",
-          //     }
-          //   ),
+      //       (file) =>
+      //         file instanceof File &&
+      //         file.type === "application/pdf" &&
+      //         file.size <= 5 * 1024 * 1024, // Max 5MB
+      //       {
+      //           message: "PAN Card PDF is required, must be a PDF, and less than 5MB",
+      //         }
+      //       ),
           
           // // Aadhaar Card Upload
           // aadhaarCard: z

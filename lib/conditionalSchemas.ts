@@ -1,33 +1,129 @@
 // lib/conditionalSchemas.ts
 import * as z from 'zod';
 
-export const conditionalSchemas: Record<string, z.ZodObject<any>> = {
+// Reusable PDF validation
+const pdfFileSchema = z
+  .instanceof(File)
+  .refine((file) => file.type === 'application/pdf', {
+    message: 'Only PDF files are allowed.',
+  });
+
+// Schema Definitions
+export const conditionalSchemas = {
   'Provisional Registration': z.object({
-    pr_bds_upload: z.any(),
-    pr_bonafide_upload: z.any(),
-    ssc_memo: z.any(),
-    custodian_clg: z.any(),
+    pr_bds_upload: pdfFileSchema,
+    pr_bonafide_upload: pdfFileSchema,
+    ssc_memo: pdfFileSchema,
+    custodian_clg: pdfFileSchema,
   }),
+
   'Bachelor of Dental Surgery (BDS) from Telangana': z.object({
+    professional_address: z.string().min(1, "Required"),
+    qualification_description: z.string().min(1, "Required"),
+    bds_university_address: z.string().min(1, "Required"),
+    bds_qualification_year: z.string().min(1, "Required"),
+    bds_clg_address: z.string().min(1, "Required"),
+    bds_degree_upload: pdfFileSchema,
+    study_upload: pdfFileSchema,
+    intern_upload: pdfFileSchema,
+    pr_certificate_upload: pdfFileSchema,
+    bds_affidavit_upload: pdfFileSchema,
+    ssc_memo: pdfFileSchema,
+    custodian_clg: pdfFileSchema,
+  }),
+
+  'Transfer BDS (BDS registrant - from other state dental councils in India)': z.object({
     professional_address: z.string().min(1),
     qualification_description: z.string().min(1),
     bds_university_address: z.string().min(1),
     bds_qualification_year: z.string().min(1),
     bds_clg_address: z.string().min(1),
-    bds_degree_upload: z.any(),
-    study_upload: z.any(),
-    intern_upload: z.any(),
-    pr_certificate_upload: z.any(),
-    bds_affidavit_upload: z.any(),
-    ssc_memo: z.any(),
-    custodian_clg: z.any(),
+    bds_degree_upload: pdfFileSchema,
+    study_upload: pdfFileSchema,
+    intern_upload: pdfFileSchema,
+    pr_certificate_upload: pdfFileSchema,
+    bds_affidavit_upload: pdfFileSchema,
+    ssc_memo: pdfFileSchema,
+    custodian_clg: pdfFileSchema,
   }),
-  // Add other schemas here
-};
 
-export const getConditionalSchema = (category: string): z.ZodObject<any> => {
+  'Transfer BDS + New MDS': z.object({
+    professional_address: z.string().min(1),
+    qualification_description: z.string().min(1),
+    bds_university_address: z.string().min(1),
+    bds_qualification_year: z.string().min(1),
+    bds_clg_address: z.string().min(1),
+    bds_degree_upload: pdfFileSchema,
+    study_upload: pdfFileSchema,
+    intern_upload: pdfFileSchema,
+    pr_certificate_upload: pdfFileSchema,
+    bds_affidavit_upload: pdfFileSchema,
+    ssc_memo: pdfFileSchema,
+    custodian_clg: pdfFileSchema,
+    mds_university_name: z.string().min(1),
+    mds_qualification_date: z.string().min(1),
+    mds_college_name: z.string().min(1),
+    mds_degree_certificate: pdfFileSchema,
+    mds_college_bonafide: pdfFileSchema,
+    tdc_registration_certificate: pdfFileSchema,
+    noc_dci: pdfFileSchema,
+    noc_transferor_state: pdfFileSchema,
+    mds_affidavit: pdfFileSchema,
+  }),
+
+  'Transfer MDS (MDS registrant - from other state dental councils in India)': z.object({
+    professional_address: z.string().min(1),
+    qualification_description: z.string().min(1),
+    bds_university_address: z.string().min(1),
+    bds_qualification_year: z.string().min(1),
+    bds_clg_address: z.string().min(1),
+    bds_degree_upload: pdfFileSchema,
+    study_upload: pdfFileSchema,
+    intern_upload: pdfFileSchema,
+    pr_certificate_upload: pdfFileSchema,
+    bds_affidavit_upload: pdfFileSchema,
+    ssc_memo: pdfFileSchema,
+    custodian_clg: pdfFileSchema,
+    mds_university_name: z.string().min(1),
+    mds_qualification_date: z.string().min(1),
+    mds_college_name: z.string().min(1),
+    mds_degree_certificate: pdfFileSchema,
+    mds_college_bonafide: pdfFileSchema,
+    noc_dci: pdfFileSchema,
+    noc_transferor_state: pdfFileSchema,
+  }),
+
+  'Master of Dental Surgery (MDS) from Telangana': z.object({
+    mds_university_name: z.string().min(1),
+    mds_qualification_date: z.string().min(1),
+    mds_college_name: z.string().min(1),
+    mds_degree_certificate: pdfFileSchema,
+    mds_college_bonafide: pdfFileSchema,
+    mds_affidavit: pdfFileSchema,
+  }),
+
+  'Non Indian Dentist Registration (Temporary)': z.object({
+    professional_address: z.string().min(1),
+    qualification_description: z.string().min(1),
+    bds_university_address: z.string().min(1),
+    bds_qualification_year: z.string().min(1),
+    bds_clg_address: z.string().min(1),
+    bds_degree_upload: pdfFileSchema,
+    study_upload: pdfFileSchema,
+    intern_upload: pdfFileSchema,
+    pr_certificate_upload: pdfFileSchema,
+    bds_affidavit_upload: pdfFileSchema,
+    ssc_memo: pdfFileSchema,
+    custodian_clg: pdfFileSchema,
+  }),
+} satisfies Record<string, z.ZodObject<any>>;
+
+// Get schema by category
+export const getConditionalSchema = (
+  category: keyof typeof conditionalSchemas
+): z.ZodObject<any> => {
   return conditionalSchemas[category] ?? z.object({});
 };
 
-// ✅ Export Step2FormValues like this:
+// Inferred type from selected schema
 export type Step2FormValues = z.infer<ReturnType<typeof getConditionalSchema>>;

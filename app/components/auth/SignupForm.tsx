@@ -213,7 +213,7 @@ export function SignupForm() {
       {/* Submit */}
       <Button
         type="submit"
-        className="w-full bg-[#00694A] hover:bg-[#008562] text-white text-button font-medium"
+        className="w-full bg-[#00694A] hover:bg-[#008562] text-white font-medium"
       >
         Sign Up
       </Button>

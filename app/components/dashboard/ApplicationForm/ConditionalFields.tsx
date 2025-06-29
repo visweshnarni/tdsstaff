@@ -18,6 +18,7 @@ export type Step2FormValues = ReturnType<typeof getConditionalSchema>["_type"];
 interface ConditionalFieldsProps {
   onNext: (data: Partial<Step2FormValues>) => void;
   onBack: () => void;
+  defaultValues: Partial<Step2FormValues>;
   registrationCategory: string;
   onFileChange?: (name: string, file: File) => void;
 }
@@ -243,11 +244,11 @@ const ConditionalFields: React.FC<ConditionalFieldsProps> = ({
   };
 
   return registrationCategory && fields[registrationCategory] ? (
-    <div className="bg-white p-6 md:p-10 mt-6 rounded-lg shadow-md border border-gray-200">
+    // <div className="bg-white p-6 md:p-10 mt-6 rounded-lg shadow-md border border-gray-200">
       <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
         {fields[registrationCategory]}
       </div>
-    </div>
+    // </div>
   ) : null;
 };
 

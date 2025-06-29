@@ -25,13 +25,16 @@ export default function RootLayout({
   children: React.ReactNode
 }>) {
   return (
+    <div className="pt-20">
+
     <html
       lang="en"
       className={`${geistSans.variable} ${geistMono.variable} ${francois.variable} ${inter.variable} ${poppins.variable}`}
-    >
+      >
       <body className="font-poppins antialiased text-gray-900 bg-white">
         {children}
       </body>
     </html>
+      </div>
   )
 }

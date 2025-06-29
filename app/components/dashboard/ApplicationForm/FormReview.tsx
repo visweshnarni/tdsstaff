@@ -1,4 +1,4 @@
-'use client';
+"use client";
 
 import React from "react";
 import { Button } from "@/components/ui/button";
@@ -10,8 +10,7 @@ type FormData = Partial<Step1FormValues & Step2FormValues>;
 
 interface FormReviewProps {
   data: FormData;
-  onNext: () => void;
-  onBack: () => void;
+  onEdit?: (section: string) => void;
 }
 
 const fieldLabels: Record<keyof FormData, string> = {
@@ -74,7 +73,7 @@ const groupOrder: Record<string, (keyof FormData)[]> = {
     "aadhaarNumber",
     "registrationType",
   ],
-  "Uploads": [
+  Uploads: [
     "panCard",
     "aadhaarCard",
     "signature",
@@ -109,11 +108,9 @@ const groupOrder: Record<string, (keyof FormData)[]> = {
 };
 
 const isFile = (val: unknown): val is File =>
-  typeof val === "object" &&
-  val !== null &&
-  val instanceof File;
+  typeof val === "object" && val !== null && val instanceof File;
 
-const FormReview: React.FC<FormReviewProps> = ({ data, onNext, onBack }) => {
+const FormReview: React.FC<FormReviewProps> = ({ data, onEdit }) => {
   const renderValue = (key: keyof FormData, value: unknown) => {
     if (isFile(value)) {
       const url = URL.createObjectURL(value);
@@ -146,56 +143,53 @@ const FormReview: React.FC<FormReviewProps> = ({ data, onNext, onBack }) => {
   };
 
   return (
-    <div className="bg-[#f8f9fa] p-6 rounded-md shadow-sm border border-gray-200">
-      <div className="space-y-6">
-        {Object.entries(groupOrder).map(([groupName, keys]) => {
-          const hasAny = keys.some((key) => typeof key === "string" && data[key]);
-          if (!hasAny) return null;
+    <div className="space-y-6">
+      {Object.entries(groupOrder).map(([groupName, keys]) => {
+        const hasAny = keys.some((key) => typeof key === "string" && data[key]);
+        if (!hasAny) return null;
 
-          return (
-            <div
-              key={groupName}
-              className="bg-white p-6 rounded shadow-sm border border-gray-200"
-            >
-              <h3 className="text-lg font-semibold text-gray-700 mb-4">
+        // Show Edit button only for Basic Details and MDS/BDS Details
+        const canEdit =
+          groupName === "Basic Details" ||
+          groupName === "BDS Details" ||
+          groupName === "MDS Details";
+
+        return (
+          <div key={groupName} className="relative">
+            <div className="flex items-center justify-between mb-4">
+              <h3 className="text-lg font-semibold text-gray-700">
                 {groupName}
               </h3>
-              <dl className="grid grid-cols-1 md:grid-cols-2 gap-x-6 gap-y-4 text-sm">
-                {keys.map((key) => {
-                  if (typeof key !== "string") return null;
-                  const value = data[key];
-                  if (!value) return null;
-                  return (
-                    <div key={key}>
-                      <dt className="font-medium text-gray-600">
-                        {fieldLabels[key] || key}
-                      </dt>
-                      <dd className="text-gray-800">{renderValue(key, value)}</dd>
-                    </div>
-                  );
-                })}
-              </dl>
+              {onEdit && canEdit && (
+                <Button
+                  variant="outline"
+                  onClick={() => onEdit(groupName)}
+                  className="text-sm px-3 py-1 bg-[#00694A] hover:bg-[#004d36] text-white"
+                >
+                  Edit
+                </Button>
+              )}
             </div>
-          );
-        })}
 
-        <div className="flex justify-between pt-6">
-          <Button
-            type="button"
-            onClick={onBack}
-            className="bg-[#8B0000] hover:bg-[#6b0000] text-white font-semibold px-6 py-2 rounded shadow-md"
-          >
-            Back
-          </Button>
-          <Button
-            type="button"
-            onClick={onNext}
-            className="bg-[#00694A] hover:bg-[#004d36] text-white font-semibold px-6 py-2 rounded shadow-md"
-          >
-            Save & Continue
-          </Button>
-        </div>
-      </div>
+            <dl className="grid grid-cols-1 md:grid-cols-2 gap-x-6 gap-y-4 text-sm bg-white p-6 rounded shadow-sm border border-gray-200">
+              {keys.map((key) => {
+                if (typeof key !== "string") return null;
+                const value = data[key];
+                if (!value) return null;
+
+                return (
+                  <div key={key}>
+                    <dt className="font-medium text-gray-600">
+                      {fieldLabels[key] || key}
+                    </dt>
+                    <dd className="text-gray-800">{renderValue(key, value)}</dd>
+                  </div>
+                );
+              })}
+            </dl>
+          </div>
+        );
+      })}
     </div>
   );
 };

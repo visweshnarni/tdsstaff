@@ -51,40 +51,40 @@ export const basicDetailsSchema = z.object({
         .regex(/^\d{12}$/, "Aadhaar must be 12 digits"),
       
       // PAN Card Upload
-      // panCard: z
-      //   .custom<File>(
-      //       (file) =>
-      //         file instanceof File &&
-      //         file.type === "application/pdf" &&
-      //         file.size <= 5 * 1024 * 1024, // Max 5MB
-      //       {
-      //           message: "PAN Card PDF is required, must be a PDF, and less than 5MB",
-      //         }
-      //       ),
+      panCard: z
+        .custom<File>(
+            (file) =>
+              file instanceof File &&
+              file.type === "application/pdf" &&
+              file.size <= 5 * 1024 * 1024, // Max 5MB
+            {
+                message: "PAN Card PDF is required, must be a PDF, and less than 5MB",
+              }
+            ),
           
-          // // Aadhaar Card Upload
-          // aadhaarCard: z
-          //   .custom<File>(
-            //     (file) =>
-            //       file instanceof File &&
-            //       file.type === "application/pdf" &&
-            //       file.size <= 5 * 1024 * 1024, // Max 5MB
-            //     {
-              //       message: "Aadhaar Card PDF is required, must be a PDF, and less than 5MB",
-              //     }
-              //   ),
+          // Aadhaar Card Upload
+          aadhaarCard: z
+            .custom<File>(
+                (file) =>
+                  file instanceof File &&
+                  file.type === "application/pdf" &&
+                  file.size <= 5 * 1024 * 1024, // Max 5MB
+                {
+                    message: "Aadhaar Card PDF is required, must be a PDF, and less than 5MB",
+                  }
+                ),
               
-              // // Signature Upload
-              // signature: z
-              //   .custom<File>(
-                //     (file) =>
-                //       file instanceof File &&
-                //       file.type === "application/pdf" &&
-                //       file.size <= 5 * 1024 * 1024, // Max 5MB
-                //     {
-                  //       message: "Signature PDF is required, must be a PDF, and less than 5MB",
-                  //     }
-                  //   ),
+              // Signature Upload
+              signature: z
+                .custom<File>(
+                    (file) =>
+                      file instanceof File &&
+                      file.type === "application/pdf" &&
+                      file.size <= 5 * 1024 * 1024, // Max 5MB
+                    {
+                        message: "Signature PDF is required, must be a PDF, and less than 5MB",
+                      }
+                    ),
 
   nationality: z.enum(
     ["Natural born Indian Citizen", "Natural born British Subject","British Subject if Indian Domicile", "Naturalized Indian Citizen", "Subject of a Foreign Government"],

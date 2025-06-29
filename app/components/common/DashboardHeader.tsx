@@ -23,7 +23,7 @@ export default function DashboardHeader() {
   }, [])
 
   return (
-    <header className="w-full h-20 bg-[#f9fafb] border-b border-gray-200 px-6 flex items-center justify-between font-poppins">
+    <header className="fixed top-0 left-0 right-0 z-50 w-full h-20 bg-[#f9fafb] border-b border-gray-200 px-6 flex items-center justify-between font-poppins shadow">
       {/* Left: Logo */}
       <div className="flex items-center space-x-3">
         <Image

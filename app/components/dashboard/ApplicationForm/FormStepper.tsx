@@ -1,5 +1,7 @@
 'use client';
 
+import { useState } from 'react';
+
 interface StepperProps {
   currentStep: number;
   steps: {
@@ -9,6 +11,13 @@ interface StepperProps {
 }
 
 export default function FormStepper({ currentStep, steps }: StepperProps) {
+  const [paymentComplete, setPaymentComplete] = useState(false);
+
+  const handlePaymentSubmit = () => {
+    // ...your payment logic...
+    setPaymentComplete(true);
+  };
+
   return (
     <div className="flex items-center justify-between max-w-4xl mx-auto mb-10 px-4">
       {steps.map((step, index) => {

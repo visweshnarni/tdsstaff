@@ -25,6 +25,10 @@ export default function NoteFromCouncil({ entries }: Props) {
 
   return (
     <div className="space-y-6">
+      <h1 className="text-3xl font-semibold text-[#00694A] font-francois-one mb-6 border-b border-gray-300 pb-2 text-center">
+        Notes from Council
+      </h1>
+
       {visibleEntries.map((entry, idx) => (
         <div
           key={idx}

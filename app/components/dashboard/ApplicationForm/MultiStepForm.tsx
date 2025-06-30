@@ -65,6 +65,10 @@ export default function MultiStepForm() {
 
   return (
     <div className="w-full max-w-5xl mx-auto px-2 sm:px-4 md:px-6 py-6 md:pl-72">
+      <h1 className="text-3xl font-semibold text-[#00694A] font-francois-one mb-6 border-b border-gray-300 pb-2 text-center">
+        Application Form
+      </h1>
+
       <AnimatePresence mode="wait">
         <motion.div
           key={step + (paymentComplete ? "-done" : "")}

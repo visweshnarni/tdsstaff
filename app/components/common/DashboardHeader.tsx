@@ -23,7 +23,7 @@ export default function DashboardHeader() {
   }, [])
 
   return (
-    <header className="fixed top-0 left-0 right-0 z-50 w-full h-20 bg-[#f9fafb] border-b border-gray-200 px-6 flex items-center justify-between font-poppins shadow">
+    <header className="fixed top-0 left-0 right-0 z-50 w-full h-20 bg-[#FFFFFF] border-b border-gray-200 px-6 flex items-center justify-between font-poppins shadow">
       {/* Left: Logo */}
       <div className="flex items-center space-x-3">
         <Image
@@ -81,7 +81,7 @@ export default function DashboardHeader() {
                 className="w-full text-left px-4 py-2 text-sm hover:bg-gray-100 text-gray-700"
                 onClick={() => {
                   // Add routing logic here
-                  console.log('Go to Profile Settings')
+                  console.log("Go to Profile Settings");
                 }}
               >
                 Profile Settings
@@ -90,7 +90,7 @@ export default function DashboardHeader() {
                 className="w-full text-left px-4 py-2 text-sm hover:bg-gray-100 text-gray-700"
                 onClick={() => {
                   // Add logout logic here
-                  console.log('Logout')
+                  console.log("Logout");
                 }}
               >
                 Logout
@@ -100,5 +100,5 @@ export default function DashboardHeader() {
         )}
       </div>
     </header>
-  )
+  );
 }

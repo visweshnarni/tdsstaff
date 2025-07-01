@@ -257,6 +257,7 @@ export default function BasicDetails({
                 </FormItem>
               )}
             />
+
             {/* Nationality */}
             <FormField
               name="nationality"
@@ -357,8 +358,13 @@ export default function BasicDetails({
                   <FormControl>
                     <Input
                       {...field}
-                      className="w-full"
+                      maxLength={10}
+                      inputMode="text"
                       placeholder="e.g. AAAAA1234A"
+                      onChange={(e) =>
+                        field.onChange(e.target.value.toUpperCase())
+                      }
+                      className="w-full"
                     />
                   </FormControl>
                   <FormMessage />
@@ -404,8 +410,14 @@ export default function BasicDetails({
                   <FormControl>
                     <Input
                       {...field}
+                      inputMode="numeric"
+                      maxLength={12}
+                      pattern="\d*"
+                      placeholder="xxxx xxxx xxxx"
+                      onChange={(e) =>
+                        field.onChange(e.target.value.replace(/\D/g, ""))
+                      }
                       className="w-full"
-                      placeholder="12 digit number"
                     />
                   </FormControl>
                   <FormMessage />
@@ -502,9 +514,9 @@ export default function BasicDetails({
             <div className="md:col-span-2 flex justify-center pt-6">
               <Button
                 type="submit"
-                className="bg-[#00694A] hover:bg-[#004d36] text-white font-semibold py-2 px-6 rounded"
+                className="bg-[#00694A] hover:bg-[#004d36] text-white"
               >
-                Save & Continue
+                Continue
               </Button>
             </div>
           </form>

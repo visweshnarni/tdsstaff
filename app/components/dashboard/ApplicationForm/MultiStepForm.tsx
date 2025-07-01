@@ -64,7 +64,7 @@ export default function MultiStepForm() {
   };
 
   return (
-    <div className="w-full max-w-5xl mx-auto px-2 sm:px-4 md:px-6 py-6 md:pl-72">
+    <div>
       <h1 className="text-3xl font-semibold text-[#00694A] font-francois-one mb-6 border-b border-gray-300 pb-2 text-center">
         Application Form
       </h1>
@@ -108,15 +108,15 @@ export default function MultiStepForm() {
                     <Button
                       type="button"
                       onClick={goBack}
-                      className="w-full sm:w-40 bg-[#8B0000] hover:bg-[#6b0000] text-white font-semibold px-6 py-2 rounded shadow-md transition-colors"
+                      className="bg-[#8B0000] hover:bg-[#6b0000] text-white"
                     >
                       Back
                     </Button>
                     <Button
                       type="submit"
-                      className="w-full sm:w-40 bg-[#00694A] hover:bg-[#004d36] text-white font-semibold px-6 py-2 rounded shadow-md transition-colors"
+                      className="bg-[#00694A] hover:bg-[#004d36] text-white"
                     >
-                      Save & Continue
+                      Next
                     </Button>
                   </div>
                 </form>
@@ -131,16 +131,16 @@ export default function MultiStepForm() {
                   <Button
                     type="button"
                     onClick={goBack}
-                    className="w-full sm:w-40 bg-[#8B0000] hover:bg-[#6b0000] text-white font-semibold px-6 py-2 rounded shadow-md transition-colors"
+                    className=" bg-[#8B0000] hover:bg-[#6b0000] text-white"
                   >
                     Back
                   </Button>
                   <Button
                     type="button"
                     onClick={goNext}
-                    className="w-full sm:w-40 bg-[#00694A] hover:bg-[#004d36] text-white font-semibold px-6 py-2 rounded shadow-md transition-colors"
+                    className=" bg-[#00694A] hover:bg-[#004d36] text-white"
                   >
-                    Save & Continue
+                    Next
                   </Button>
                 </div>
               </>

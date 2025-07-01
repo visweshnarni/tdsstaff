@@ -19,6 +19,7 @@ import {
   SelectContent,
   SelectItem,
 } from "@/components/ui/select";
+import { Download } from "lucide-react";
 
 interface Props {
   data: GscRecord[];
@@ -97,7 +98,7 @@ export default function GscDataTable({ data, onEdit }: Props) {
                 <TableCell>{record.name}</TableCell>
                 <TableCell>{record.applicationNo}</TableCell>
                 <TableCell>{record.applicationDate}</TableCell>
-                <TableCell>
+                <TableCell className="flex items-center gap-2">
                   <span
                     className={`text-sm px-3 py-1 rounded-full font-medium ${getStatusClass(
                       record.status ?? ""
@@ -106,14 +107,30 @@ export default function GscDataTable({ data, onEdit }: Props) {
                     {record.status}
                   </span>
                 </TableCell>
+
                 <TableCell>
                   {record.status === "Pending" && (
                     <Button
                       size="sm"
+                      variant="outline"
+                      className="text-[#00694A] border-[#00694A] hover:bg-[#f0fdf4] hover:text-[#004d36] cursor-pointer px-11"
                       onClick={() => onEdit(record)}
-                      className="bg-[#00694A] hover:bg-[#004d36] text-white cursor-pointer"
                     >
                       Edit
+                    </Button>
+                  )}
+
+                  {record.status === "Approved" && (
+                    <Button
+                      size="sm"
+                      className="bg-[#00694A] hover:bg-[#004d36] text-white cursor-pointer px-6"
+                      onClick={() => {
+                        // const url = record.downloadUrl || "/dummy.pdf";
+                        // window.open(url, "_blank");
+                      }}
+                    >
+                      <Download className="w-4 h-4 mr-2" />
+                      Download
                     </Button>
                   )}
                 </TableCell>

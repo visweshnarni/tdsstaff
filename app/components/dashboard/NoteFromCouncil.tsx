@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import { CalendarDays, User } from "lucide-react";
+import { Button } from "@/components/ui/button";
 
 export interface CouncilNote {
   date: string;
@@ -58,12 +59,12 @@ export default function NoteFromCouncil({ entries }: Props) {
       {/* Load More Button */}
       {visibleCount < entries.length && (
         <div className="text-center pt-4">
-          <button
+          <Button
             onClick={handleLoadMore}
-            className="cursor-pointer px-6 py-2 text-white bg-[#00694A] hover:bg-[#004d36] text-sm font-semibold rounded shadow-sm transition"
+            className="cursor-pointer text-white bg-[#00694A] hover:bg-[#004d36]"
           >
             Load More . . .
-          </button>
+          </Button>
         </div>
       )}
     </div>

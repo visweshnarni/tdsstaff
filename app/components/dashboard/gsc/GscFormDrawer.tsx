@@ -142,7 +142,7 @@ export default function GscFormDrawer({
           <div className="md:col-span-2 flex flex-col sm:flex-row justify-center gap-4 pt-6">
             <Button
               type="submit"
-              className="w-full sm:w-40 bg-[#00694A] hover:bg-[#004d36] text-white font-semibold px-6 py-2 rounded shadow-md"
+              className="bg-[#00694A] hover:bg-[#004d36] text-white"
             >
               {defaultValues ? "Update" : "Submit"}
             </Button>

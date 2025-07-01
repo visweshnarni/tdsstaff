@@ -30,7 +30,7 @@ const Payment: React.FC<Step4PaymentProps> = ({ onSubmit }) => {
         <Button
           type="button"
           onClick={onSubmit}
-          className="w-40 bg-[#00694A] hover:bg-[#004d36] text-white font-semibold px-6 py-2 rounded shadow-md transition-colors"
+          className="bg-[#00694A] hover:bg-[#004d36] text-white"
         >
           Pay Now
         </Button>

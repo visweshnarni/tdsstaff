@@ -44,7 +44,7 @@ export default function GscPage() {
       <div className="flex justify-end mb-6">
         <Button
           onClick={handleAddNew}
-          className="bg-[#00694A] hover:bg-[#004d36] text-white"
+          className="bg-[#00694A] hover:bg-[#004d36] text-white cursor-pointer"
         >
           <PlusCircle className="mr-2 h-4 w-4" />
           Apply for New GSC

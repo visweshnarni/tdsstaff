@@ -67,7 +67,7 @@ export default function GscDataTable({ data, onEdit }: Props) {
           value={statusFilter}
           onValueChange={(value) => setStatusFilter(value)}
         >
-          <SelectTrigger className="w-full md:w-[200px]">
+          <SelectTrigger className="w-full md:w-[200px] cursor-pointer">
             <SelectValue placeholder="Filter by status" />
           </SelectTrigger>
           <SelectContent>
@@ -111,7 +111,7 @@ export default function GscDataTable({ data, onEdit }: Props) {
                     <Button
                       size="sm"
                       onClick={() => onEdit(record)}
-                      className="bg-[#00694A] hover:bg-[#004d36] text-white"
+                      className="bg-[#00694A] hover:bg-[#004d36] text-white cursor-pointer"
                     >
                       Edit
                     </Button>

@@ -139,11 +139,29 @@ export default function GscFormDrawer({
             )}
           </div>
 
-          {/* Submit Button */}
-          <div className="md:col-span-2 flex flex-col sm:flex-row justify-center gap-4 pt-6">
+          {/* <div className="md:col-span-2 flex flex-col sm:flex-row justify-center gap-4 pt-6">
             <Button
               type="submit"
               className="bg-[#00694A] hover:bg-[#004d36] text-white"
+            >
+              {defaultValues ? "Update/Re-Submit" : "Submit/Pay"}
+            </Button>
+          </div> */}
+
+          {/* Submit Button */}
+          <div className="fixed bottom-0 w-full sm:max-w-[50vw] bg-white border-t border-[#004d36]/20 p-10 py-4 flex justify-between items-center">
+            <Button
+              variant="outline"
+              type="button"
+              onClick={onClose}
+              className="text-[#6b0000] border-[#6b0000] hover:bg-[#6b0000] hover:text-white cursor-pointer px-10"
+            >
+              Close
+            </Button>
+            <Button
+              type="submit"
+              className="bg-[#00694A] hover:bg-[#004d36] text-white cursor-pointer"
+              onClick={handleSubmit(submitHandler)}
             >
               {defaultValues ? "Update/Re-Submit" : "Submit/Pay"}
             </Button>

@@ -1,17 +1,17 @@
-'use client';
+"use client";
 
 import { useState } from "react";
 import { PlusCircle } from "lucide-react";
 import { Button } from "@/components/ui/button";
-import { GscRecord } from "@/app/types/gsc";
-import { generateDummyGscData } from "@/app/data/generateDummyGscData";
-import GscDataTable from "@/app/components/dashboard/gsc/GscDataTable";
-import GscFormDrawer from "@/app/components/dashboard/gsc/GscFormDrawer";
+import { NocRecord } from "@/app/types/noc";
+import { generateDummyNocData } from "@/app/data/generateDummyNocData";
+import NocDataTable from "@/app/components/dashboard/noc/NocDataTable";
+import NocFormDrawer from "@/app/components/dashboard/noc/NocFormDrawer";
 
-export default function GscPage() {
+export default function NocPage() {
   const [drawerOpen, setDrawerOpen] = useState(false);
-  const [records, setRecords] = useState<GscRecord[]>(generateDummyGscData());
-  const [editingRecord, setEditingRecord] = useState<GscRecord | undefined>(
+  const [records, setRecords] = useState<NocRecord[]>(generateDummyNocData());
+  const [editingRecord, setEditingRecord] = useState<NocRecord | undefined>(
     undefined
   );
 
@@ -20,12 +20,12 @@ export default function GscPage() {
     setDrawerOpen(true);
   };
 
-  const handleEdit = (record: GscRecord) => {
+  const handleEdit = (record: NocRecord) => {
     setEditingRecord(record);
     setDrawerOpen(true);
   };
 
-  const handleSubmit = (data: GscRecord) => {
+  const handleSubmit = (data: NocRecord) => {
     if (data.id) {
       setRecords((prev) =>
         prev.map((item) => (item.id === data.id ? { ...item, ...data } : item))
@@ -39,7 +39,7 @@ export default function GscPage() {
   return (
     <div className="w-full px-4 sm:px-6 md:px-8 pt-6 md:pl-72 max-w-screen-xl mx-auto">
       <h1 className="text-3xl font-semibold text-[#00694A] font-francois-one mb-6 pb-2 text-center">
-        Good Standing Certificate
+        No Objection Certificate
       </h1>
       <div className="flex justify-end mb-6">
         <Button
@@ -47,12 +47,12 @@ export default function GscPage() {
           className="bg-[#00694A] hover:bg-[#004d36] text-white cursor-pointer"
         >
           <PlusCircle className="mr-2 h-4 w-4" />
-          Apply for New GSC
+          Apply for New NOC
         </Button>
       </div>
 
-      <GscDataTable data={records} onEdit={handleEdit} />
-      <GscFormDrawer
+      <NocDataTable data={records} onEdit={handleEdit} />
+      <NocFormDrawer
         open={drawerOpen}
         onClose={() => setDrawerOpen(false)}
         onSubmit={handleSubmit}

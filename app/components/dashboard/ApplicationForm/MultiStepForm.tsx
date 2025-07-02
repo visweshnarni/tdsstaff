@@ -65,10 +65,9 @@ export default function MultiStepForm() {
 
   return (
     <div>
-      <h1 className="text-3xl font-semibold text-[#00694A] font-francois-one mb-6 border-b border-gray-300 pb-2 text-center">
+      <h1 className="text-3xl font-semibold text-[#00694A] font-francois-one mb-6 pb-2 text-center">
         Application Form
       </h1>
-
       <AnimatePresence mode="wait">
         <motion.div
           key={step + (paymentComplete ? "-done" : "")}
@@ -78,7 +77,7 @@ export default function MultiStepForm() {
           exit="exit"
           transition={{ duration: 0.35 }}
         >
-          <div className="w-full max-w-4xl mx-auto bg-white rounded-lg shadow-md p-3 sm:p-6 md:p-10">
+          <div className="w-full max-w-4xl mx-auto bg-[#FFFFFF] rounded-lg shadow-md p-3 sm:p-6 md:p-10 border border-gray-200">
             {/* Stepper only shows if not on thank you page */}
             {!(step === 4 && paymentComplete) && (
               <FormStepper currentStep={step} steps={steps} />

@@ -7,24 +7,26 @@ import { Button } from '@/components/ui/button'
 import ReCAPTCHA from 'react-google-recaptcha'
 
 type FormData = {
-  fullName: string
-  email: string
-  mobile: string
-  password: string
-  confirmPassword: string
-}
+  fullName: string;
+  email: string;
+  confirmEmail: string;
+  mobile: string;
+  password: string;
+  confirmPassword: string;
+};
 
 type FormErrors = Partial<Record<keyof FormData, string>>
 
 export function SignupForm() {
   const router = useRouter()
   const [form, setForm] = useState<FormData>({
-    fullName: '',
-    email: '',
-    mobile: '',
-    password: '',
-    confirmPassword: '',
-  })
+    fullName: "",
+    email: "",
+    confirmEmail: "",
+    mobile: "",
+    password: "",
+    confirmPassword: "",
+  });
 
   const [errors, setErrors] = useState<FormErrors>({})
 
@@ -62,6 +64,12 @@ export function SignupForm() {
       newErrors.email = 'Invalid email format.'
     }
 
+    if (!form.confirmEmail.trim()) {
+      newErrors.confirmEmail = "Please confirm your email.";
+    } else if (form.confirmEmail !== form.email) {
+      newErrors.confirmEmail = "Email addresses do not match.";
+    }    
+
     if (!form.password) {
       newErrors.password = 'Password is required.'
     } else if (
@@ -92,9 +100,9 @@ export function SignupForm() {
   return (
     <form
       onSubmit={handleSubmit}
-      className="w-full max-w-md mx-auto space-y-6 px-4 py-10 font-poppins"
+      className="w-full max-w-md mx-auto space-y-2.5 px-2 font-poppins bg-[#FFFFFF]"
     >
-      <h1 className="text-header font-semibold text-[#00694A] text-center">
+      <h1 className="text-3xl text-header font-semibold text-[#00694A] text-center">
         Sign Up
       </h1>
 
@@ -130,6 +138,24 @@ export function SignupForm() {
         />
         {errors.email && (
           <p className="text-sm text-red-600 mt-1">{errors.email}</p>
+        )}
+      </div>
+
+      {/* Confirm Email */}
+      <div className="mt-4">
+        <label htmlFor="confirmEmail" className="block text-label mb-2">
+          Confirm Email <span className="text-red-500">*</span>
+        </label>
+        <Input
+          id="confirmEmail"
+          type="email"
+          placeholder="Re-enter email"
+          className="text-placeholder"
+          value={form.confirmEmail}
+          onChange={(e) => setForm({ ...form, confirmEmail: e.target.value })}
+        />
+        {errors.confirmEmail && (
+          <p className="text-sm text-red-600 mt-1">{errors.confirmEmail}</p>
         )}
       </div>
 
@@ -184,9 +210,7 @@ export function SignupForm() {
           }
         />
         {errors.confirmPassword && (
-          <p className="text-sm text-red-600 mt-1">
-            {errors.confirmPassword}
-          </p>
+          <p className="text-sm text-red-600 mt-1">{errors.confirmPassword}</p>
         )}
       </div>
 
@@ -195,15 +219,18 @@ export function SignupForm() {
         <label className="block text-label mb-2">reCAPTCHA</label>
         <ReCAPTCHA
           sitekey="your_site_key_here"
-          onChange={(val) => console.log('captcha', val)}
+          onChange={(val) => console.log("captcha", val)}
         />
       </div>
 
       {/* Terms & Conditions */}
       <div className="flex items-start space-x-2">
         <input id="agree" type="checkbox" required className="mt-1" />
-        <label htmlFor="agree" className="text-paragraph font-normal leading-snug">
-          I agree to all{' '}
+        <label
+          htmlFor="agree"
+          className="text-paragraph font-normal leading-snug"
+        >
+          I agree to all{" "}
           <span className="text-[#00694A] hover:underline cursor-pointer text-xs">
             Read the T&C of TDC
           </span>
@@ -213,7 +240,7 @@ export function SignupForm() {
       {/* Submit */}
       <Button
         type="submit"
-        className="w-full bg-[#00694A] hover:bg-[#008562] text-white font-medium"
+        className="w-full bg-[#00694A] hover:bg-[#008562] text-white"
       >
         Sign Up
       </Button>
@@ -223,12 +250,12 @@ export function SignupForm() {
         Already have an account?
         <button
           type="button"
-          onClick={() => router.push('/login')}
-          className="text-[#00694A] font-semibold hover:underline ml-1"
+          onClick={() => router.push("/login")}
+          className="text-[#00694A] font-semibold hover:underline ml-1 cursor-pointer"
         >
           Login now
         </button>
       </div>
     </form>
-  )
+  );
 }

@@ -33,18 +33,15 @@ export function LoginForm() {
   return (
     <form
       onSubmit={handleSubmit}
-      className="w-full max-w-md mx-auto space-y-6 px-4 py-10 font-poppins"
+      className="w-full max-w-md mx-auto space-y-4 px-2 font-poppins bg-[#FFFFFF]"
     >
-      <h1 className="text-header font-semibold text-[#00694A] text-center">
+      <h1 className="text-3xl text-header font-semibold text-[#00694A] text-center">
         Login
       </h1>
 
       {/* Email */}
       <div>
-        <label
-          htmlFor="email"
-          className="block text-label font-normal mb-2"
-        >
+        <label htmlFor="email" className="block text-label font-normal mb-2">
           Email <span className="text-red-500">*</span>
         </label>
         <Input
@@ -59,10 +56,7 @@ export function LoginForm() {
 
       {/* Password */}
       <div>
-        <label
-          htmlFor="password"
-          className="block text-label font-normal mb-2"
-        >
+        <label htmlFor="password" className="block text-label font-normal mb-2">
           Password <span className="text-red-500">*</span>
         </label>
         <Input
@@ -77,12 +71,10 @@ export function LoginForm() {
 
       {/* ReCAPTCHA */}
       <div>
-        <label className="block text-label font-normal mb-2">
-          reCAPTCHA
-        </label>
+        <label className="block text-label font-normal mb-2">reCAPTCHA</label>
         <ReCAPTCHA
           sitekey="your_site_key_here"
-          onChange={(val) => console.log('captcha', val)}
+          onChange={(val) => console.log("captcha", val)}
         />
       </div>
 
@@ -102,12 +94,12 @@ export function LoginForm() {
         Don’t have an account?
         <button
           type="button"
-          onClick={() => router.push('/signup')}
-          className="text-[#00694A] ml-1 hover:underline font-semibold"
+          onClick={() => router.push("/signup")}
+          className="text-[#00694A] ml-1 hover:underline font-semibold cursor-pointer"
         >
           Signup now
         </button>
       </div>
     </form>
-  )
+  );
 }

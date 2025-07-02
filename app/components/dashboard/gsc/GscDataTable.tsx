@@ -20,6 +20,7 @@ import {
   SelectItem,
 } from "@/components/ui/select";
 import { Download } from "lucide-react";
+import { ChevronLeft, ChevronRight } from "lucide-react";
 
 interface Props {
   data: GscRecord[];
@@ -29,19 +30,25 @@ interface Props {
 export default function GscDataTable({ data, onEdit }: Props) {
   const [searchTerm, setSearchTerm] = useState("");
   const [statusFilter, setStatusFilter] = useState("All");
+  const [currentPage, setCurrentPage] = useState(1);
+  const itemsPerPage = 20;
 
   const filteredData = useMemo(() => {
     return data.filter((record) => {
       const matchesSearch =
         record.name?.toLowerCase().includes(searchTerm.toLowerCase()) ||
         record.applicationNo?.toLowerCase().includes(searchTerm.toLowerCase());
-
       const matchesStatus =
         statusFilter === "All" || record.status === statusFilter;
-
       return matchesSearch && matchesStatus;
     });
   }, [data, searchTerm, statusFilter]);
+
+  const totalPages = Math.ceil(filteredData.length / itemsPerPage);
+  const paginatedData = filteredData.slice(
+    (currentPage - 1) * itemsPerPage,
+    currentPage * itemsPerPage
+  );
 
   const getStatusClass = (status: string) => {
     return (
@@ -61,12 +68,18 @@ export default function GscDataTable({ data, onEdit }: Props) {
           placeholder="Search by name or application no."
           className="w-full md:w-1/2"
           value={searchTerm}
-          onChange={(e) => setSearchTerm(e.target.value)}
+          onChange={(e) => {
+            setSearchTerm(e.target.value);
+            setCurrentPage(1); // ✅ reset to page 1 on search
+          }}
         />
 
         <Select
           value={statusFilter}
-          onValueChange={(value) => setStatusFilter(value)}
+          onValueChange={(value) => {
+            setStatusFilter(value);
+            setCurrentPage(1); // ✅ reset to page 1 on status change
+          }}
         >
           <SelectTrigger className="w-full md:w-[200px] cursor-pointer">
             <SelectValue placeholder="Filter by status" />
@@ -92,8 +105,8 @@ export default function GscDataTable({ data, onEdit }: Props) {
           </TableRow>
         </TableHeader>
         <TableBody>
-          {filteredData.length > 0 ? (
-            filteredData.map((record) => (
+          {paginatedData.length > 0 ? (
+            paginatedData.map((record) => (
               <TableRow key={record.id}>
                 <TableCell>{record.name}</TableCell>
                 <TableCell>{record.applicationNo}</TableCell>
@@ -113,24 +126,29 @@ export default function GscDataTable({ data, onEdit }: Props) {
                     <Button
                       size="sm"
                       variant="outline"
-                      className="text-[#00694A] border-[#00694A] hover:bg-[#f0fdf4] hover:text-[#004d36] cursor-pointer px-11"
+                      className="text-[#00694A] border-[#00694A] hover:bg-[#00694A] hover:text-[#FFFF] cursor-pointer"
                       onClick={() => onEdit(record)}
                     >
-                      Edit
+                      Edit/Re-Submit
                     </Button>
                   )}
 
                   {record.status === "Approved" && (
                     <Button
-                      size="sm"
-                      className="bg-[#00694A] hover:bg-[#004d36] text-white cursor-pointer px-6"
+                      variant="outline"
+                      size="icon"
+                      className="ml-10 bg-[#00694A] hover:bg-[#004d36] hover:text-white text-white rounded-full cursor-pointer"
                       onClick={() => {
                         // const url = record.downloadUrl || "/dummy.pdf";
-                        // window.open(url, "_blank");
+                        // const link = document.createElement("a");
+                        // link.href = url;
+                        // link.download = "";
+                        // link.target = "_blank";
+                        // link.click();
                       }}
                     >
-                      <Download className="w-4 h-4 mr-2" />
-                      Download
+                      <Download className="h-4 w-4" />
+                      <span className="sr-only">Download</span>
                     </Button>
                   )}
                 </TableCell>
@@ -145,6 +163,41 @@ export default function GscDataTable({ data, onEdit }: Props) {
           )}
         </TableBody>
       </Table>
+
+      {/* Pagination Controls */}
+      {totalPages > 1 && (
+        <div className="flex justify-between items-center px-4 py-3 border-t">
+          <p className="text-sm text-gray-600">
+            Showing{" "}
+            {Math.min(
+              (currentPage - 1) * itemsPerPage + 1,
+              filteredData.length
+            )}{" "}
+            to {Math.min(currentPage * itemsPerPage, filteredData.length)} of{" "}
+            {filteredData.length} records
+          </p>
+          <div className="flex gap-2">
+            <Button
+              variant="outline"
+              size="icon"
+              disabled={currentPage === 1}
+              onClick={() => setCurrentPage((prev) => prev - 1)}
+              className="text-[#00694A] border-[#00694A] hover:bg-[#00694A] hover:text-[#FFFF] cursor-pointer"
+            >
+              <ChevronLeft className="h-4 w-4" />
+            </Button>
+            <Button
+              variant="outline"
+              size="icon"
+              disabled={currentPage === totalPages}
+              onClick={() => setCurrentPage((prev) => prev + 1)}
+              className="text-[#00694A] border-[#00694A] hover:bg-[#00694A] hover:text-[#FFFF] cursor-pointer"
+            >
+              <ChevronRight className="h-4 w-4" />
+            </Button>
+          </div>
+        </div>
+      )}
     </div>
   );
 }

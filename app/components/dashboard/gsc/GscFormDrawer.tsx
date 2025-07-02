@@ -57,7 +57,6 @@ export default function GscFormDrawer({
     // onSubmit(extended);
     onClose();
   };
-  
 
   return (
     <Sheet open={open} onOpenChange={onClose}>
@@ -67,7 +66,9 @@ export default function GscFormDrawer({
       >
         <SheetHeader>
           <SheetTitle className="text-2xl font-francois-one text-[#00694A] text-center mt-8">
-            {defaultValues ? "Edit GSC Application" : "Apply for New GSC"}
+            {defaultValues
+              ? "Edit Good Standing Certificate Application"
+              : "Apply New Good Standing Certificate"}
           </SheetTitle>
         </SheetHeader>
 
@@ -144,7 +145,7 @@ export default function GscFormDrawer({
               type="submit"
               className="bg-[#00694A] hover:bg-[#004d36] text-white"
             >
-              {defaultValues ? "Update" : "Submit"}
+              {defaultValues ? "Update/Re-Submit" : "Submit/Pay"}
             </Button>
           </div>
         </form>

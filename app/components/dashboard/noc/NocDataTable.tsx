@@ -137,7 +137,7 @@ export default function NocDataTable({ data, onEdit }: Props) {
                     <Button
                       variant="outline"
                       size="icon"
-                      className="ml-10 bg-[#00694A] hover:bg-[#004d36] hover:text-white text-white rounded-full cursor-pointer"
+                      className="text-sm text-[#00694A] hover:bg-[#00694A] hover:text-[#FFFFFF] border-[#00694A] cursor-pointer ml-10 rounded-full"
                       // onClick={() => {
                       //   const url =
                       //     record.current_tdc_reg_certificate_url ||
@@ -149,7 +149,7 @@ export default function NocDataTable({ data, onEdit }: Props) {
                       //   link.click();
                       // }}
                     >
-                      <Download className="h-4 w-4" />
+                      <Download/>
                       <span className="sr-only">Download</span>
                     </Button>
                   )}

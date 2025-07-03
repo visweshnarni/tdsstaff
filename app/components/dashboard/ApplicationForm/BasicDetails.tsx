@@ -133,7 +133,7 @@ export default function BasicDetails({
                     Full Name <span className="text-red-500">*</span>
                   </FormLabel>
                   <FormControl>
-                    <Input {...field} className="w-full" />
+                    <Input {...field} className="w-full" placeholder="Full Name"/>
                   </FormControl>
                   <FormMessage />
                 </FormItem>
@@ -177,7 +177,7 @@ export default function BasicDetails({
                     Father's Name <span className="text-red-500">*</span>
                   </FormLabel>
                   <FormControl>
-                    <Input {...field} className="w-full" />
+                    <Input {...field} className="w-full" placeholder="Father's Name"/>
                   </FormControl>
                   <FormMessage />
                 </FormItem>
@@ -307,7 +307,7 @@ export default function BasicDetails({
                     Email <span className="text-red-500">*</span>
                   </FormLabel>
                   <FormControl>
-                    <Input type="email" {...field} className="w-full" />
+                    <Input type="email" {...field} className="w-full" placeholder="Enter email"/>
                   </FormControl>
                   <FormMessage />
                 </FormItem>
@@ -323,7 +323,7 @@ export default function BasicDetails({
                     Mobile Number <span className="text-red-500">*</span>
                   </FormLabel>
                   <FormControl>
-                    <Input type="tel" {...field} className="w-full" />
+                    <Input type="tel" {...field} className="w-full" placeholder="Enter mobile number"/>
                   </FormControl>
                   <FormMessage />
                 </FormItem>

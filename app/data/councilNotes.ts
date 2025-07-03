@@ -3,7 +3,7 @@
 // Define the type for a council note
 export interface CouncilNote {
   date: string; // ISO format date string
-  category: 'New Application' | 'Renewal' | 'Good NOC' | 'Bad NOC'; // restrict to known values
+  category: 'New Application' | 'Renewal' | 'NOC' | 'NOC'; // restrict to known values
   note: string;
   from: 'TDC Staff' | 'TDC Registrar'; // enforce known sources
 }
@@ -18,7 +18,7 @@ export const councilNotes: CouncilNote[] = [
   },
   {
     date: "2025-06-21 10:15:34",
-    category: "Good NOC",
+    category: "NOC",
     note: "NOC request has been reviewed positively. Please visit the office to collect hard copy.",
     from: "TDC Registrar",
   },
@@ -30,7 +30,7 @@ export const councilNotes: CouncilNote[] = [
   },
   {
     date: "2025-06-25 09:10:45",
-    category: "Bad NOC",
+    category: "NOC",
     note: "NOC cannot be granted due to pending registration issues. For details, contact registrar.",
     from: "TDC Registrar",
   },
@@ -48,7 +48,7 @@ export const councilNotes: CouncilNote[] = [
   },
   {
     date: "2025-06-21 10:15:34",
-    category: "Good NOC",
+    category: "NOC",
     note: "NOC request has been reviewed positively. Please visit the office to collect hard copy.",
     from: "TDC Registrar",
   },
@@ -60,7 +60,7 @@ export const councilNotes: CouncilNote[] = [
   },
   {
     date: "2025-06-25 09:10:45",
-    category: "Bad NOC",
+    category: "NOC",
     note: "NOC cannot be granted due to pending registration issues. For details, contact registrar.",
     from: "TDC Registrar",
   },
@@ -78,7 +78,7 @@ export const councilNotes: CouncilNote[] = [
   },
   {
     date: "2025-06-21 10:15:34",
-    category: "Good NOC",
+    category: "NOC",
     note: "NOC request has been reviewed positively. Please visit the office to collect hard copy.",
     from: "TDC Registrar",
   },
@@ -90,7 +90,7 @@ export const councilNotes: CouncilNote[] = [
   },
   {
     date: "2025-06-25 09:10:45",
-    category: "Bad NOC",
+    category: "NOC",
     note: "NOC cannot be granted due to pending registration issues. For details, contact registrar.",
     from: "TDC Registrar",
   },
@@ -108,7 +108,7 @@ export const councilNotes: CouncilNote[] = [
   },
   {
     date: "2025-06-21 10:15:34",
-    category: "Good NOC",
+    category: "NOC",
     note: "NOC request has been reviewed positively. Please visit the office to collect hard copy.",
     from: "TDC Registrar",
   },
@@ -120,7 +120,7 @@ export const councilNotes: CouncilNote[] = [
   },
   {
     date: "2025-06-25 09:10:45",
-    category: "Bad NOC",
+    category: "NOC",
     note: "NOC cannot be granted due to pending registration issues. For details, contact registrar.",
     from: "TDC Registrar",
   },

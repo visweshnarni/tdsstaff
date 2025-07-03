@@ -1,34 +1,34 @@
-'use client'
+"use client";
 
-import { useState } from 'react'
-import { useRouter } from 'next/navigation'
-import { Input } from '@/components/ui/input'
-import { Button } from '@/components/ui/button'
-import ReCAPTCHA from 'react-google-recaptcha'
+import { useState } from "react";
+import { useRouter } from "next/navigation";
+import { Input } from "@/components/ui/input";
+import { Button } from "@/components/ui/button";
+import ReCAPTCHA from "react-google-recaptcha";
 
 type LoginData = {
-  email: string
-  password: string
-}
+  email: string;
+  password: string;
+};
 
 export function LoginForm() {
-  const router = useRouter()
+  const router = useRouter();
   const [form, setForm] = useState<LoginData>({
-    email: '',
-    password: '',
-  })
+    email: "",
+    password: "",
+  });
 
-  const [error, setError] = useState<string | null>(null)
+  const [error, setError] = useState<string | null>(null);
 
   const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault()
+    e.preventDefault();
     if (!form.email || !form.password) {
-      setError('Email and password are required.')
+      setError("Email and password are required.");
     } else {
-      setError(null)
-      alert('Login successful!')
+      setError(null);
+      alert("Login successful!");
     }
-  }
+  };
 
   return (
     <form
@@ -69,6 +69,17 @@ export function LoginForm() {
         />
       </div>
 
+      {/* Forgot Password */}
+      <div className="text-right text-sm mt-1">
+        <button
+          type="button"
+          onClick={() => router.push("/forgot-password")}
+          className="text-[#00694A] hover:underline font-medium cursor-pointer"
+        >
+          Forgot Password?
+        </button>
+      </div>
+
       {/* ReCAPTCHA */}
       <div>
         <label className="block text-label font-normal mb-2">reCAPTCHA</label>
@@ -84,7 +95,7 @@ export function LoginForm() {
       {/* Submit Button */}
       <Button
         type="submit"
-        className="w-full text-button font-medium bg-[#00694A] hover:bg-[#008562] text-white"
+        className="w-full text-button font-medium bg-[#00694A] hover:bg-[#008562] text-white mt-10"
       >
         Login
       </Button>

@@ -32,6 +32,7 @@ import { Calendar } from "@/components/ui/calendar";
 import { CalendarIcon } from "lucide-react";
 
 import { format } from "date-fns";
+import { register } from "module";
 
 export type Step1FormValues = z.infer<typeof basicDetailsSchema>;
 
@@ -124,16 +125,58 @@ export default function BasicDetails({
               )}
             />
 
-            {/* Full Name */}
+            {/* first name */}
             <FormField
-              name="fullName"
-              render={({ field }) => (
+              name="fname"
+              render={(field) => (
                 <FormItem className="w-full">
                   <FormLabel>
-                    Full Name <span className="text-red-500">*</span>
+                    First Name <span className="text-red-500">*</span>
                   </FormLabel>
                   <FormControl>
-                    <Input {...field} className="w-full" placeholder="Full Name"/>
+                    <Input
+                      {...field}
+                      className="w-full"
+                      placeholder="Enter your first name"
+                    />
+                  </FormControl>
+                  <FormMessage />
+                </FormItem>
+              )}
+            />
+
+            {/* middle name */}
+            <FormField
+              name="mname"
+              render={(field) => (
+                <FormItem className="w-full">
+                  <FormLabel>Middle Name</FormLabel>
+                  <FormControl>
+                    <Input
+                      {...field}
+                      className="w-full"
+                      placeholder="Enter your middle name"
+                    />
+                  </FormControl>
+                  <FormMessage />
+                </FormItem>
+              )}
+            />
+
+            {/* last name */}
+            <FormField
+              name="lname"
+              render={(field) => (
+                <FormItem className="w-full">
+                  <FormLabel>
+                    Last Name <span className="text-red-500">*</span>
+                  </FormLabel>
+                  <FormControl>
+                    <Input
+                      {...field}
+                      className="w-full"
+                      placeholder="Enter your last name"
+                    />
                   </FormControl>
                   <FormMessage />
                 </FormItem>
@@ -177,7 +220,27 @@ export default function BasicDetails({
                     Father's Name <span className="text-red-500">*</span>
                   </FormLabel>
                   <FormControl>
-                    <Input {...field} className="w-full" placeholder="Father's Name"/>
+                    <Input
+                      {...field}
+                      className="w-full"
+                      placeholder="Father's Name"
+                    />
+                  </FormControl>
+                  <FormMessage />
+                </FormItem>
+              )}
+            />
+
+            {/* mother name */}
+            <FormField
+              name="mothername"
+              render={(field) => (
+                <FormItem className="w-full">
+                  <FormLabel>
+                    Mother's Name<span className="text-red-500">*</span>
+                  </FormLabel>
+                  <FormControl>
+                    <Input {...field} placeholder="Enter mother's name" />
                   </FormControl>
                   <FormMessage />
                 </FormItem>
@@ -205,17 +268,6 @@ export default function BasicDetails({
             />
 
             {/* Date of Birth */}
-            {/* <FormField
-            name="dateOfBirth"
-            render={({ field }) => (
-              <FormItem className="w-full">
-                <FormLabel>Date & Year of Birth <span className="text-red-500">*</span></FormLabel>
-                <FormControl><Input type="date" {...field} className="w-full" /></FormControl>
-                <FormMessage />
-              </FormItem>
-            )}
-          /> */}
-
             <FormField
               name="dateOfBirth"
               render={({ field }) => (
@@ -299,6 +351,26 @@ export default function BasicDetails({
             />
 
             {/* Email */}
+            {/* <FormField
+              name="email"
+              render={({ field }) => (
+                <FormItem className="w-full">
+                  <FormLabel>
+                    Email <span className="text-red-500">*</span>
+                  </FormLabel>
+                  <FormControl>
+                    <Input
+                      type="email"
+                      {...field}
+                      className="w-full"
+                      placeholder="Enter email"
+                    />
+                  </FormControl>
+                  <FormMessage />
+                </FormItem>
+              )}
+            /> */}
+
             <FormField
               name="email"
               render={({ field }) => (
@@ -307,7 +379,15 @@ export default function BasicDetails({
                     Email <span className="text-red-500">*</span>
                   </FormLabel>
                   <FormControl>
-                    <Input type="email" {...field} className="w-full" placeholder="Enter email"/>
+                    <Input
+                      disabled
+                      value={
+                        field.value ??
+                        // defaultValues?.email ??
+                        "johndoe@example.com"
+                      }
+                      className="w-full bg-gray-100 cursor-not-allowed text-gray-700"
+                    />
                   </FormControl>
                   <FormMessage />
                 </FormItem>
@@ -323,7 +403,25 @@ export default function BasicDetails({
                     Mobile Number <span className="text-red-500">*</span>
                   </FormLabel>
                   <FormControl>
-                    <Input type="tel" {...field} className="w-full" placeholder="Enter mobile number"/>
+                    <Input
+                      type="tel"
+                      {...field}
+                      className="w-full"
+                      placeholder="Enter mobile number"
+                    />
+                  </FormControl>
+                  <FormMessage />
+                </FormItem>
+              )}
+            />
+
+            <FormField
+              name="telephone_number"
+              render={(field) => (
+                <FormItem className="w-full">
+                  <FormLabel>Telephone Number</FormLabel>
+                  <FormControl>
+                    <Input placeholder="Enter telephone number" {...field} />
                   </FormControl>
                   <FormMessage />
                 </FormItem>

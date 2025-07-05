@@ -28,14 +28,14 @@ const pdfFileSchema = z
 
 // Schema Definitions
 export const conditionalSchemas = {
-  'Provisional Registration': z.object({
+  "Provisional Registration": z.object({
     pr_bds_upload: pdfFileSchema,
     pr_bonafide_upload: pdfFileSchema,
     ssc_memo: pdfFileSchema,
     custodian_clg: pdfFileSchema,
   }),
 
-  'Bachelor of Dental Surgery (BDS) from Telangana': z.object({
+  "Bachelor of Dental Surgery (BDS) from Telangana": z.object({
     professional_address: z.string().min(1, "Required"),
     qualification_description: z.string().min(1, "Required"),
     bds_university_address: z.string().min(1, "Required"),
@@ -50,22 +50,23 @@ export const conditionalSchemas = {
     custodian_clg: pdfFileSchema,
   }),
 
-  'Transfer BDS (BDS registrant - from other state dental councils in India)': z.object({
-    professional_address: z.string().min(1),
-    qualification_description: z.string().min(1),
-    bds_university_address: z.string().min(1),
-    bds_qualification_year: monthYearSchema,
-    bds_clg_address: z.string().min(1),
-    bds_degree_upload: pdfFileSchema,
-    study_upload: pdfFileSchema,
-    intern_upload: pdfFileSchema,
-    pr_certificate_upload: pdfFileSchema,
-    bds_affidavit_upload: pdfFileSchema,
-    ssc_memo: pdfFileSchema,
-    custodian_clg: pdfFileSchema,
-  }),
+  "Transfer BDS (BDS registrant - from other state dental councils in India)":
+    z.object({
+      professional_address: z.string().min(1),
+      qualification_description: z.string().min(1),
+      bds_university_address: z.string().min(1),
+      bds_qualification_year: monthYearSchema,
+      bds_clg_address: z.string().min(1),
+      bds_degree_upload: pdfFileSchema,
+      study_upload: pdfFileSchema,
+      intern_upload: pdfFileSchema,
+      pr_certificate_upload: pdfFileSchema,
+      bds_affidavit_upload: pdfFileSchema,
+      ssc_memo: pdfFileSchema,
+      custodian_clg: pdfFileSchema,
+    }),
 
-  'Transfer BDS + New MDS': z.object({
+  "Transfer BDS + New MDS": z.object({
     professional_address: z.string().min(1),
     qualification_description: z.string().min(1),
     bds_university_address: z.string().min(1),
@@ -87,40 +88,44 @@ export const conditionalSchemas = {
     noc_dci: pdfFileSchema,
     noc_transferor_state: pdfFileSchema,
     mds_affidavit: pdfFileSchema,
+    pg_speciality: z.string().min(1, "Please select a PG/MDS speciality"),
   }),
 
-  'Transfer MDS (MDS registrant - from other state dental councils in India)': z.object({
-    professional_address: z.string().min(1),
-    qualification_description: z.string().min(1),
-    bds_university_address: z.string().min(1),
-    bds_qualification_year: monthYearSchema,
-    bds_clg_address: z.string().min(1),
-    bds_degree_upload: pdfFileSchema,
-    study_upload: pdfFileSchema,
-    intern_upload: pdfFileSchema,
-    pr_certificate_upload: pdfFileSchema,
-    bds_affidavit_upload: pdfFileSchema,
-    ssc_memo: pdfFileSchema,
-    custodian_clg: pdfFileSchema,
-    mds_university_name: z.string().min(1),
-    mds_qualification_date: monthYearSchema,
-    mds_college_name: z.string().min(1),
-    mds_degree_certificate: pdfFileSchema,
-    mds_college_bonafide: pdfFileSchema,
-    noc_dci: pdfFileSchema,
-    noc_transferor_state: pdfFileSchema,
-  }),
+  "Transfer MDS (MDS registrant - from other state dental councils in India)":
+    z.object({
+      professional_address: z.string().min(1),
+      qualification_description: z.string().min(1),
+      bds_university_address: z.string().min(1),
+      bds_qualification_year: monthYearSchema,
+      bds_clg_address: z.string().min(1),
+      bds_degree_upload: pdfFileSchema,
+      study_upload: pdfFileSchema,
+      intern_upload: pdfFileSchema,
+      pr_certificate_upload: pdfFileSchema,
+      bds_affidavit_upload: pdfFileSchema,
+      ssc_memo: pdfFileSchema,
+      custodian_clg: pdfFileSchema,
+      mds_university_name: z.string().min(1),
+      mds_qualification_date: monthYearSchema,
+      mds_college_name: z.string().min(1),
+      mds_degree_certificate: pdfFileSchema,
+      mds_college_bonafide: pdfFileSchema,
+      noc_dci: pdfFileSchema,
+      noc_transferor_state: pdfFileSchema,
+      pg_speciality: z.string().min(1, "Please select a PG/MDS speciality"),
+    }),
 
-  'Master of Dental Surgery (MDS) from Telangana': z.object({
+  "Master of Dental Surgery (MDS) from Telangana": z.object({
     mds_university_name: z.string().min(1),
     mds_qualification_date: monthYearSchema,
     mds_college_name: z.string().min(1),
     mds_degree_certificate: pdfFileSchema,
     mds_college_bonafide: pdfFileSchema,
     mds_affidavit: pdfFileSchema,
+    pg_speciality: z.string().min(1, "Please select a PG/MDS speciality"),
   }),
 
-  'Non Indian Dentist Registration (Temporary)': z.object({
+  "Non Indian Dentist Registration (Temporary)": z.object({
     professional_address: z.string().min(1),
     qualification_description: z.string().min(1),
     bds_university_address: z.string().min(1),

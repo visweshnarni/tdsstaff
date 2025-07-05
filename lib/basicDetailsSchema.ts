@@ -1,9 +1,19 @@
 import * as z from "zod";
 
 export const basicDetailsSchema = z.object({
-  // fullName: z
+  // fname: z
   //   .string()
-  //   .min(1, "Full name is required")
+  //   .min(1, "First name is required")
+  //   .regex(/^[a-zA-Z\s]+$/, "Only alphabets are allowed"),
+
+  // mname: z
+  //   .string()
+  //   .regex(/^[a-zA-Z\s]*$/, "Only alphabets are allowed")
+  //   .optional(),
+
+  // lname: z
+  //   .string()
+  //   .min(1, "Last name is required")
   //   .regex(/^[a-zA-Z\s]+$/, "Only alphabets are allowed"),
 
   // gender: z.enum(["Male", "Female", "Other"], {
@@ -15,6 +25,11 @@ export const basicDetailsSchema = z.object({
   //   .min(1, "Father's Name is required")
   //   .regex(/^[a-zA-Z\s]+$/, "Only alphabets are allowed"),
 
+  // mothername: z
+  //   .string()
+  //   .min(1, "Mother's Name is required")
+  //   .regex(/^[a-zA-Z\s]*$/, "Only alphabets are allowed"),
+
   // dateOfBirth: z.string().min(1, "Date of Birth is required"), // Format validation (e.g. YYYY-MM-DD) can be added later
 
   // email: z.string().email("Invalid email format"),
@@ -24,6 +39,11 @@ export const basicDetailsSchema = z.object({
   //   .min(10, "Mobile number must be 10 digits")
   //   .max(10, "Mobile number must be 10 digits")
   //   .regex(/^[0-9]+$/, "Only numbers are allowed"),
+
+  // telephone_number: z
+  //   .string()
+  //   .regex(/^[0-9]*$/, "Only numbers are allowed")
+  //   .optional(),
 
   // address: z.string().min(1, "Residential address is required"),
 

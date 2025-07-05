@@ -350,6 +350,43 @@ export default function BasicDetails({
               )}
             />
 
+            {/* category */}
+            <FormField
+              name="category"
+              render={({ field }) => (
+                <FormItem className="w-full">
+                  <FormLabel>
+                    Category <span className="text-red-500">*</span>
+                  </FormLabel>
+                  <Select
+                    onValueChange={field.onChange}
+                    defaultValue={field.value}
+                  >
+                    <FormControl className="w-full cursor-pointer">
+                      <SelectTrigger>
+                        <SelectValue placeholder="Select Category"/>
+                      </SelectTrigger>
+                    </FormControl>
+                    <SelectContent >
+                      <SelectItem value="Open Category">
+                        Open Category
+                      </SelectItem>
+                      <SelectItem value="Backward Classes">
+                        Backward Classes
+                      </SelectItem>
+                      <SelectItem value="Scheduled Castes">
+                        Scheduled Castes
+                      </SelectItem>
+                      <SelectItem value="Scheduled Tribes">
+                        Scheduled Tribes
+                      </SelectItem>
+                    </SelectContent>
+                  </Select>
+                  <FormMessage />
+                </FormItem>
+              )}
+            />
+
             {/* Email */}
             {/* <FormField
               name="email"

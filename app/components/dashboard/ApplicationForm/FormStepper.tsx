@@ -49,7 +49,7 @@ export default function FormStepper({ currentStep, steps }: StepperProps) {
             {index < steps.length - 1 && (
               <div className="absolute top-5 left-1/2 w-full h-1">
                 <div
-                  className={`border-t-4 w-full translate-x-4 ${
+                  className={`border-t-1 w-full translate-x-4 ${
                     isCompleted ? 'border-[#00694A]' : 'border-gray-300'
                   }`}
                 />

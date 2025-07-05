@@ -363,12 +363,12 @@ const ConditionalFields: React.FC<ConditionalFieldsProps> = ({
       ],
 
     "Master of Dental Surgery (MDS) from Telangana": [
-      pdfField("mds_affidavit_upload", "Upload MDS Affidavit"),
       dropdownField(
         "pg_speciality",
         "PG / MDS Specialities",
         pgSpecialityOptions
       ),
+      pdfField("mds_affidavit_upload", "Upload MDS Affidavit"),
       textField(
         "bds_university_address",
         "Name & address of the University (BDS)"

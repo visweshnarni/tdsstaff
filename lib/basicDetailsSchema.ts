@@ -105,6 +105,16 @@ export const basicDetailsSchema = z.object({
     { required_error: "Nationality is required" }
   ),
 
+  category: z.enum(
+    [
+      "Open Category",
+      "Backward Classes",
+      "Scheduled Castes",
+      "Scheduled Tribes",
+    ],
+    { required_error: "Category is required" }
+  ),
+
   registrationCategory: z.enum(
     [
       "Provisional Registration",

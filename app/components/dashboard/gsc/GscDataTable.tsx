@@ -31,7 +31,7 @@ export default function GscDataTable({ data, onEdit }: Props) {
   const [searchTerm, setSearchTerm] = useState("");
   const [statusFilter, setStatusFilter] = useState("All");
   const [currentPage, setCurrentPage] = useState(1);
-  const itemsPerPage = 20;
+  const itemsPerPage = 10;
 
   const filteredData = useMemo(() => {
     return data.filter((record) => {

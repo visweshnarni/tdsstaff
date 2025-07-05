@@ -31,7 +31,7 @@ export default function NocDataTable({ data, onEdit }: Props) {
   const [searchTerm, setSearchTerm] = useState("");
   const [statusFilter, setStatusFilter] = useState("All");
   const [currentPage, setCurrentPage] = useState(1);
-  const itemsPerPage = 20;
+  const itemsPerPage = 10;
 
   const filteredData = useMemo(() => {
     return data.filter((record) => {
@@ -95,7 +95,7 @@ export default function NocDataTable({ data, onEdit }: Props) {
 
       {/* Table */}
       <Table>
-        <TableHeader>
+        <TableHeader className="gap-2">
           <TableRow>
             <TableHead>Name</TableHead>
             <TableHead>Application No.</TableHead>
@@ -149,7 +149,7 @@ export default function NocDataTable({ data, onEdit }: Props) {
                       //   link.click();
                       // }}
                     >
-                      <Download/>
+                      <Download />
                       <span className="sr-only">Download</span>
                     </Button>
                   )}

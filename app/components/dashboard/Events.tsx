@@ -1,27 +1,35 @@
-'use client'
+"use client";
 
-import { useState } from 'react'
-import Image from 'next/image'
-import { CalendarDays, MapPin, Download, Globe } from 'lucide-react'
-import { Button } from '@/components/ui/button'
+import { useState } from "react";
+import Image from "next/image";
+import {
+  CalendarDays,
+  MapPin,
+  Download,
+  Globe,
+  Badge,
+  Award,
+} from "lucide-react";
+import { Button } from "@/components/ui/button";
 
 export interface Event {
-  title: string
-  dateRange: string // e.g., "25 Apr 2025 - 27 Apr 2025"
-  location: string
-  imageUrl: string
-  downloadUrl: string
+  title: string;
+  dateRange: string; // e.g., "25 Apr 2025 - 27 Apr 2025"
+  location: string;
+  imageUrl: string;
+  downloadUrl: string;
+  cmePoints: number;
 }
 
 interface Props {
-  entries: Event[]
+  entries: Event[];
 }
 
 export default function Events({ entries }: Props) {
-  const [visibleCount, setVisibleCount] = useState(10)
-  const handleLoadMore = () => setVisibleCount(entries.length)
+  const [visibleCount, setVisibleCount] = useState(10);
+  const handleLoadMore = () => setVisibleCount(entries.length);
 
-  const visibleEntries = entries.slice(0, visibleCount)
+  const visibleEntries = entries.slice(0, visibleCount);
 
   return (
     <div className="space-y-6">
@@ -45,7 +53,7 @@ export default function Events({ entries }: Props) {
               priority={false} // Set to true if it's above the fold
             />
           </div>
-          
+
           {/* Right: Details */}
           <div className="flex-1 flex flex-col gap-2">
             <div className="flex justify-between items-start mb-2">
@@ -60,7 +68,7 @@ export default function Events({ entries }: Props) {
                 <Button
                   type="button"
                   variant="outline"
-                  className="text-sm text-[#00694A] hover:bg-[#00694A] hover:text-white border-[#00694A] rounded-full flex items-center gap-2"
+                  className="text-sm text-[#00694A] hover:bg-[#00694A] hover:text-white border-[#00694A] rounded-full flex items-center gap-2 cursor-pointer"
                 >
                   <Globe className="w-4 h-4" />
                   Visit Website
@@ -76,6 +84,11 @@ export default function Events({ entries }: Props) {
             <div className="flex items-center text-sm text-gray-700">
               <MapPin className="w-4 h-4 mr-2 text-gray-400" />
               <span>{entry.location}</span>
+            </div>
+
+            <div className="flex items-center text-sm text-gray-700">
+              <Award className="w-4 h-4 mr-2 text-gray-400" />
+              <span>CME Points: {entry.cmePoints}</span>
             </div>
           </div>
         </div>

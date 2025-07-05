@@ -55,7 +55,9 @@ export default function Announcements({ entries }: Props) {
             </a>
           </div>
 
-          <p className="text-gray-800 text-sm leading-relaxed">{entry.note}</p>
+          <p className="text-gray-800 text-sm leading-relaxed p-2">
+            {entry.note}
+          </p>
 
           <div className="mt-3 flex items-center text-sm text-gray-600">
             <User className="h-4 w-4 mr-1 text-gray-400" />

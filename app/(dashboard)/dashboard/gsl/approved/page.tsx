@@ -1,5 +1,5 @@
 import GSLApproved from "@/app/components/dashboard/gsl/approved";
-import { GSLApprovedRecord } from "@/types/gsl/approved";
+import { GSLApprovedRecord } from "@/app/types/gsl/approved";
 
 const dummyData: GSLApprovedRecord[] = [
   {

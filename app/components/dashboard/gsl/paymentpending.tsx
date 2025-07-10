@@ -1,7 +1,7 @@
 "use client";
 
 import { useState, useMemo } from "react";
-import { GSLPaymentPendingRecord } from "@/types/gsl/payment";
+import { GSLPaymentPendingRecord } from "@/app/types/gsl/payment";
 import {
   Table,
   TableHeader,

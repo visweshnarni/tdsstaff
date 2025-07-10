@@ -1,7 +1,7 @@
 "use client";
 
 import { useMemo, useState } from "react";
-import { TRMemberRecord } from "@/types/provisional/trmembers";
+import { TRMemberRecord } from "@/app/types/provisional/trmembers";
 import {
   Table,
   TableHeader,

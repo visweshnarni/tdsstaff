@@ -1,5 +1,5 @@
 import NOLApproved from "@/app/components/dashboard/nol/approved";
-import { NOLApprovedRecord } from "@/types/nol/approved";
+import { NOLApprovedRecord } from "@/app/types/nol/approved";
 
 const dummyData: NOLApprovedRecord[] = [
   {

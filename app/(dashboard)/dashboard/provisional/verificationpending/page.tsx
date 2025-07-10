@@ -1,5 +1,5 @@
 import VerificationPending from "@/app/components/dashboard/provisional/verificationpending";
-import { ProvisionalVerificationRecord } from "@/types/provisional/verification";
+import { ProvisionalVerificationRecord } from "@/app/types/provisional/verification";
 
 const dummyData: ProvisionalVerificationRecord[] = [
   {

@@ -1,7 +1,7 @@
 "use client";
 
 import { useState, useMemo } from "react";
-import { GSLApprovedRecord } from "@/types/gsl/approved";
+import { GSLApprovedRecord } from "@/app/types/gsl/approved";
 import {
   Table,
   TableHeader,

@@ -1,5 +1,5 @@
 import GSLVerificationPending from "@/app/components/dashboard/gsl/verificationpending";
-import { GSLVerificationRecord } from "@/types/gsl/verification";
+import { GSLVerificationRecord } from "@/app/types/gsl/verification";
 
 const dummyData: GSLVerificationRecord[] = [
   {

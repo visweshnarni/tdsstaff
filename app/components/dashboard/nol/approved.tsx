@@ -1,7 +1,7 @@
 "use client";
 
 import { useMemo, useState } from "react";
-import { NOLApprovedRecord } from "@/types/nol/approved";
+import { NOLApprovedRecord } from "@/app/types/nol/approved";
 import {
   Table,
   TableHeader,

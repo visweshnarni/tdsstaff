@@ -1,5 +1,5 @@
 import RenewalPaymentPending from "@/app/components/dashboard/RenewalList/paymentpending";
-import { RenewalPaymentRecord } from "@/types/renewalpaymentpending";
+import { RenewalPaymentRecord } from "@/app/types/renewalpaymentpending";
 
 const dummyData: RenewalPaymentRecord[] = [
   {

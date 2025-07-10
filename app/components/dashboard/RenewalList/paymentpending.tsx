@@ -1,7 +1,7 @@
 "use client";
 
 import { useState, useMemo } from "react";
-import { RenewalPaymentRecord } from "@/types/renewalpaymentpending";
+import { RenewalPaymentRecord } from "@/app/types/renewalpaymentpending";
 import {
   Table,
   TableHeader,

@@ -1,7 +1,7 @@
 "use client";
 
 import { useMemo, useState } from "react";
-import { ProvisionalPaymentPendingRecord } from "@/types/provisional/payment";
+import { ProvisionalPaymentPendingRecord } from "@/app/types/provisional/payment";
 import {
   Table,
   TableHeader,

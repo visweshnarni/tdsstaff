@@ -1,5 +1,5 @@
 import TRMembers from "@/app/components/dashboard/provisional/trmembers";
-import { TRMemberRecord } from "@/types/provisional/trmembers";
+import { TRMemberRecord } from "@/app/types/provisional/trmembers";
 
 const dummyData: TRMemberRecord[] = [
   {

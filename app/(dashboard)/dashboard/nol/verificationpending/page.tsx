@@ -1,5 +1,5 @@
 import NOLVerificationPending from "@/app/components/dashboard/nol/verificationpending";
-import { NOLVerificationRecord } from "@/types/nol/verification";
+import { NOLVerificationRecord } from "@/app/types/nol/verification";
 
 const dummyData: NOLVerificationRecord[] = [
   {

@@ -1,5 +1,5 @@
 import TodayAppointments from "@/app/components/dashboard/appointments/todays";
-import { TodayAppointmentRecord } from "@/types/appointments/today";
+import { TodayAppointmentRecord } from "@/app/types/appointments/today";
 
 const dummyData: TodayAppointmentRecord[] = [
   {

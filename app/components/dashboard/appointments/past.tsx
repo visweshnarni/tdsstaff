@@ -1,7 +1,7 @@
 "use client";
 
 import { useMemo, useState } from "react";
-import { PastAppointmentRecord } from "@/types/appointments/past";
+import { PastAppointmentRecord } from "@/app/types/appointments/past";
 import {
   Table,
   TableHeader,

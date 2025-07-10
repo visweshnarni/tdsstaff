@@ -1,7 +1,7 @@
 "use client";
 
 import { useMemo, useState } from "react";
-import { ProvisionalVerificationRecord } from "@/types/provisional/verification";
+import { ProvisionalVerificationRecord } from "@/app/types/provisional/verification";
 import {
   Table,
   TableHeader,

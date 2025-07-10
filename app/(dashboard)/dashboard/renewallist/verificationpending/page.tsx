@@ -1,5 +1,5 @@
 import MembershipVerification from "@/app/components/dashboard/RenewalList/verificationpending";
-import { MembershipVerificationRecord } from "@/types/renewalverificationpending";
+import { MembershipVerificationRecord } from "@/app/types/renewalvp";
 
 // Dummy data (for testing)
 const dummyData: MembershipVerificationRecord[] = [

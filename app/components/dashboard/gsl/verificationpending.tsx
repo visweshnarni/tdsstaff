@@ -1,7 +1,7 @@
 "use client";
 
 import { useMemo, useState } from "react";
-import { GSLVerificationRecord } from "@/types/gsl/verification";
+import { GSLVerificationRecord } from "@/app/types/gsl/verification";
 import {
   Table,
   TableHeader,

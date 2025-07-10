@@ -1,5 +1,5 @@
 import PastAppointments from "@/app/components/dashboard/appointments/past";
-import { PastAppointmentRecord } from "@/types/appointments/past";
+import { PastAppointmentRecord } from "@/app/types/appointments/past";
 
 const dummyData: PastAppointmentRecord[] = [
   {

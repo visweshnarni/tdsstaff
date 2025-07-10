@@ -1,5 +1,5 @@
 import GSLPaymentPending from "@/app/components/dashboard/gsl/paymentpending";
-import { GSLPaymentPendingRecord } from "@/types/gsl/payment";
+import { GSLPaymentPendingRecord } from "@/app/types/gsl/payment";
 
 const dummyData: GSLPaymentPendingRecord[] = [
   {

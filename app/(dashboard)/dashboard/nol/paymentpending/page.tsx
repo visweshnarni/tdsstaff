@@ -1,5 +1,5 @@
 import NOLPaymentPending from "@/app/components/dashboard/nol/paymentpending";
-import { NOLPaymentPendingRecord } from "@/types/nol/payment";
+import { NOLPaymentPendingRecord } from "@/app/types/nol/payment";
 
 const dummyData: NOLPaymentPendingRecord[] = [
   {

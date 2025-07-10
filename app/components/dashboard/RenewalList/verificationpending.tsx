@@ -1,7 +1,7 @@
 'use client';
 
 import { useMemo, useState } from 'react';
-import { MembershipVerificationRecord } from '@/types/renewalverificationpending';
+import { MembershipVerificationRecord } from '@/app/types/renewalvp';
 import {
   Table,
   TableHeader,

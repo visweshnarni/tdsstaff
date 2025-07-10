@@ -1,5 +1,5 @@
 import PaymentPending from "@/app/components/dashboard/provisional/paymentpending";
-import { ProvisionalPaymentPendingRecord } from "@/types/provisional/payment";
+import { ProvisionalPaymentPendingRecord } from "@/app/types/provisional/payment";
 
 const dummyData: ProvisionalPaymentPendingRecord[] = [
   {

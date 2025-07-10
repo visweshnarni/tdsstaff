@@ -1,7 +1,7 @@
 "use client";
 
 import { useMemo, useState } from "react";
-import { DentistRecord } from "@/types/totaldentist";
+import { DentistRecord } from "@/app/types/totaldentist";
 import {
   Table,
   TableHeader,

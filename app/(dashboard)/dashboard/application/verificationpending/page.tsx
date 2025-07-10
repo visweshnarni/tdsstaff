@@ -1,4 +1,4 @@
-import VerificationPending from "@/app/components/dashboard/application/verificationpending";
+import VerificationPending from "@/app/components/dashboard/Application/verificationpending";
 import { generateDummyVerifications } from "@/app/data/generateverificationpending";
 
 const dummyData = generateDummyVerifications();

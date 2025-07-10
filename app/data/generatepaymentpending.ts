@@ -14,6 +14,6 @@ export function generateDummyPayments(count: number = 50): PaymentRecord[] {
     trNumber: faker.string.alphanumeric({ length: 10, casing: "upper" }),
     name: faker.person.fullName(),
     email: faker.internet.email(),
-    mobile: faker.phone.number("9#########"),
+    mobile: "9" + faker.string.numeric(9), // ✅ fixed here
   }));
 }

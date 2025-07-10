@@ -1,5 +1,5 @@
 import { faker } from "@faker-js/faker";
-import { VerificationRecord } from "@/types/verification";
+import { VerificationRecord } from "@/app/types/verification";
 
 export function generateDummyVerifications(count = 30): VerificationRecord[] {
   return Array.from({ length: count }, () => ({

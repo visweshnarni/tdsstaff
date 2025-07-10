@@ -1,5 +1,5 @@
 import { faker } from "@faker-js/faker";
-import { PaymentRecord } from "@/types/payment";
+import { PaymentRecord } from "@/app/types/payment";
 
 // Function to generate dummy data
 export function generateDummyPayments(count: number = 50): PaymentPendingRecord[] {

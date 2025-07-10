@@ -2,7 +2,7 @@ import { faker } from "@faker-js/faker";
 import { PaymentRecord } from "@/app/types/payment";
 
 // Function to generate dummy data
-export function generateDummyPayments(count: number = 50): PaymentPendingRecord[] {
+export function generateDummyPayments(count: number = 50): PaymentRecord[] {
   return Array.from({ length: count }, () => ({
     category: faker.helpers.arrayElement([
       "Registration",

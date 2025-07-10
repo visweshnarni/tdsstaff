@@ -100,51 +100,37 @@ export default function Sidebar() {
 
       {/* Menu Items */}
       <div className="space-y-1 flex-1 overflow-y-auto">
-        {menuItems.map((item) =>
-          item.isDropdown ? (
-            <div key={item.label}>
-              <button
-                type="button"
-                onClick={() => toggleDropdown(item.label)}
-                className="cursor-pointer w-full flex justify-between items-center px-3 py-2 rounded-md text-sm font-medium text-left hover:bg-gray-100 text-gray-700"
-              >
-                <span>{item.label}</span>
-                {openDropdown === item.label ? <ChevronUp size={16} /> : <ChevronDown size={16} />}
-              </button>
-              {openDropdown === item.label && (
-                <div className="pl-4 mt-1 space-y-1">
-                  {item.children.map((child) => (
-                    <button
-                      key={child.label}
-                      type="button"
-                      onClick={() => router.push(child.path)}
-                      className={`cursor-pointer block w-full text-left px-3 py-1 rounded-md text-sm ${
-                        pathname === child.path
-                          ? 'bg-blue-100 text-[#00694A] font-semibold'
-                          : 'hover:bg-gray-100 text-gray-700'
-                      }`}
-                    >
-                      {child.label}
-                    </button>
-                  ))}
-                </div>
-              )}
-            </div>
-          ) : (
+        {menuItems.map((item) => (
+          <div key={item.label}>
             <button
-              key={item.label}
               type="button"
-              onClick={() => router.push(item.path!)}
-              className={`cursor-pointer w-full text-left px-3 py-2 rounded-md text-sm font-medium ${
-                pathname === item.path
-                  ? 'bg-blue-100 text-[#00694A] font-semibold'
-                  : 'hover:bg-gray-100 text-gray-700'
-              }`}
+              onClick={() => toggleDropdown(item.label)}
+              className="cursor-pointer w-full flex justify-between items-center px-3 py-2 rounded-md text-sm font-medium text-left hover:bg-gray-100 text-gray-700"
             >
-              {item.label}
+              <span>{item.label}</span>
+              {openDropdown === item.label ? <ChevronUp size={16} /> : <ChevronDown size={16} />}
             </button>
-          )
-        )}
+
+            {openDropdown === item.label && (
+              <div className="pl-4 mt-1 space-y-1">
+                {item.children.map((child) => (
+                  <button
+                    key={child.label}
+                    type="button"
+                    onClick={() => router.push(child.path)}
+                    className={`cursor-pointer block w-full text-left px-3 py-1 rounded-md text-sm ${
+                      pathname === child.path
+                        ? 'bg-blue-100 text-[#00694A] font-semibold'
+                        : 'hover:bg-gray-100 text-gray-700'
+                    }`}
+                  >
+                    {child.label}
+                  </button>
+                ))}
+              </div>
+            )}
+          </div>
+        ))}
       </div>
     </aside>
   );

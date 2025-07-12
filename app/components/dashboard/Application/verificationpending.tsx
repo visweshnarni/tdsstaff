@@ -74,15 +74,24 @@ export default function VerificationPending({ data }: Props) {
                 <TableCell className="text-center px-2 py-2">{item.name}</TableCell>
                 <TableCell className="text-center px-2 py-2">{item.email}</TableCell>
                 <TableCell className="text-center px-2 py-2">{item.verificationStatus}</TableCell>
-                <TableCell className="text-center px-2 py-2">
-                  <Button
-                    variant="outline"
-                    className="text-[#00694A] border-[#00694A] hover:bg-[#00694A] hover:text-white"
-                    onClick={() => alert("Verify action triggered!")}
-                  >
-                    Verify
-                  </Button>
-                </TableCell>
+                <TableCell className="text-center px-2 py-2 space-x-2">
+  <Button
+    variant="outline"
+    className="text-[#00694A] border-[#00694A] hover:bg-[#00694A] hover:text-white"
+    onClick={() => alert("Verify action triggered!")}
+  >
+    Verify
+  </Button>
+  <span className="text-gray-400 font-semibold">or</span>
+  <Button
+    variant="outline"
+    className="text-blue-600 border-blue-600 hover:bg-blue-600 hover:text-white"
+    onClick={() => alert("View action triggered!")}
+  >
+    View
+  </Button>
+</TableCell>
+
                 <TableCell className="text-center px-2 py-2">{item.mobile}</TableCell>
                 <TableCell className="text-center px-2 py-2">{item.date}</TableCell>
               </TableRow>

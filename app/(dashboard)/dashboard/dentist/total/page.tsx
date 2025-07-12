@@ -1,4 +1,6 @@
-import TotalDentist from "@/app/components/dashboard/dentist/totaldentist/totaldentist";
+'use client';
+
+import DentistPage from "@/app/components/dashboard/dentist/totaldentist/dentistpage";
 import { DentistRecord } from "@/app/types/dentist/totaldentist/totaldentist";
 
 const dummyData: DentistRecord[] = [
@@ -19,5 +21,5 @@ const dummyData: DentistRecord[] = [
 ];
 
 export default function Page() {
-  return <TotalDentist data={dummyData} />;
+  return <DentistPage data={dummyData} />;
 }

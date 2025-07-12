@@ -1,7 +1,6 @@
 'use client';
 
 import { useForm } from 'react-hook-form';
-import { useEffect } from 'react';
 import {
   Sheet,
   SheetContent,
@@ -36,15 +35,10 @@ export default function AddDentistForm({ open, onClose, onSubmit }: Props) {
     },
   });
 
-  useEffect(() => {
-    if (open) {
-      reset(); // Clear form on open
-    }
-  }, [open, reset]);
-
   const submitHandler = (data: DentistRecord) => {
     onSubmit(data);
-    onClose();
+    onClose();     // close drawer
+    reset();       // then reset the form
   };
 
   return (
@@ -66,49 +60,37 @@ export default function AddDentistForm({ open, onClose, onSubmit }: Props) {
           <div>
             <Label className="block mb-2">Membership Number *</Label>
             <Input {...register('dentistNumber', { required: true })} />
-            {errors.dentistNumber && (
-              <p className="text-sm text-red-500">Required field</p>
-            )}
+            {errors.dentistNumber && <p className="text-sm text-red-500">Required field</p>}
           </div>
 
           <div>
             <Label className="block mb-2">Full Name *</Label>
             <Input {...register('name', { required: true })} />
-            {errors.name && (
-              <p className="text-sm text-red-500">Required field</p>
-            )}
+            {errors.name && <p className="text-sm text-red-500">Required field</p>}
           </div>
 
           <div>
             <Label className="block mb-2">Email *</Label>
             <Input type="email" {...register('email', { required: true })} />
-            {errors.email && (
-              <p className="text-sm text-red-500">Required field</p>
-            )}
+            {errors.email && <p className="text-sm text-red-500">Required field</p>}
           </div>
 
           <div>
             <Label className="block mb-2">Mobile Number *</Label>
             <Input {...register('mobile', { required: true })} />
-            {errors.mobile && (
-              <p className="text-sm text-red-500">Required field</p>
-            )}
+            {errors.mobile && <p className="text-sm text-red-500">Required field</p>}
           </div>
 
           <div>
             <Label className="block mb-2">Password *</Label>
             <Input type="password" {...register('password', { required: true })} />
-            {errors.password && (
-              <p className="text-sm text-red-500">Required field</p>
-            )}
+            {errors.password && <p className="text-sm text-red-500">Required field</p>}
           </div>
 
           <div>
             <Label className="block mb-2">Date of Registration *</Label>
             <Input type="date" {...register('date', { required: true })} />
-            {errors.date && (
-              <p className="text-sm text-red-500">Required field</p>
-            )}
+            {errors.date && <p className="text-sm text-red-500">Required field</p>}
           </div>
 
           {/* Footer Buttons */}
@@ -116,15 +98,15 @@ export default function AddDentistForm({ open, onClose, onSubmit }: Props) {
             <Button
               type="button"
               variant="outline"
-              onClick={onClose}
+              onClick={() => {
+                onClose();
+                reset();
+              }}
               className="text-[#6b0000] border-[#6b0000] hover:bg-[#6b0000] hover:text-white"
             >
               Close
             </Button>
-            <Button
-              type="submit"
-              className="bg-[#00694A] hover:bg-[#004d36] text-white"
-            >
+            <Button type="submit" className="bg-[#00694A] hover:bg-[#004d36] text-white">
               Submit
             </Button>
           </div>

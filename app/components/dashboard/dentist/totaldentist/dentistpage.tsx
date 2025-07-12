@@ -1,22 +1,26 @@
 'use client';
 
 import { useState } from 'react';
-import { DentistRecord } from '@/app/types/dentist/totaldentist/dentistform'; // Adjust the import path as necessary
-import TotalDentist from './totaldentist'; // Your table component
-import AddDentistForm from './adddentist'; // Your form component
+import { DentistRecord } from '@/app/types/dentist/totaldentist/totaldentist';
+import TotalDentist from './totaldentist';
+import AddDentistForm from './adddentist';
 
-export default function DentistPage() {
-  const [dentists, setDentists] = useState<DentistRecord[]>([]);
+interface Props {
+  data: DentistRecord[];
+}
+
+export default function DentistPage({ data }: Props) {
+  const [dentists, setDentists] = useState<DentistRecord[]>(data);
   const [drawerOpen, setDrawerOpen] = useState(false);
 
   const handleAddNew = () => {
     setDrawerOpen(true);
   };
 
-  const handleSubmit = (data: DentistRecord) => {
-    const updated = [...dentists, data];
-    const sorted = [...updated].sort((a, b) =>
-      new Date(a.date).getTime() - new Date(b.date).getTime()
+  const handleSubmit = (newDentist: DentistRecord) => {
+    const updated = [...dentists, newDentist];
+    const sorted = updated.sort(
+      (a, b) => new Date(a.date).getTime() - new Date(b.date).getTime()
     );
     setDentists(sorted);
     setDrawerOpen(false);

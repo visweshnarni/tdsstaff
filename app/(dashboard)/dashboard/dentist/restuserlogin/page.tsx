@@ -1,5 +1,5 @@
 import RestUserLogin from "@/app/components/dashboard/dentist/restuserlogin";
-import { RestUserRecord } from "@/app/types/restuserlogin";
+import { RestUserRecord } from "@/app/types/dentist/restuserlogin";
 
 const dummyData: RestUserRecord[] = [
   {

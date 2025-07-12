@@ -1,7 +1,7 @@
 "use client";
 
 import { useMemo, useState } from "react";
-import { RestUserRecord } from "@/app/types/restuserlogin";
+import { RestUserRecord } from "@/app/types/dentist/restuserlogin";
 import {
   Table,
   TableHeader,

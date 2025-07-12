@@ -1,5 +1,5 @@
-import TotalDentist from "@/app/components/dashboard/dentist/totaldentist";
-import { DentistRecord } from "@/app/types/totaldentist";
+import TotalDentist from "@/app/components/dashboard/dentist/totaldentist/totaldentist";
+import { DentistRecord } from "@/app/types/dentist/totaldentist/totaldentist";
 
 const dummyData: DentistRecord[] = [
   {

@@ -67,11 +67,9 @@ export default function DashboardHeader() {
               />
               <div>
                 <p className="text-sm font-semibold text-gray-800 leading-tight">
-                  Dr. MADISHETTI ABHILASH
+                  STAFF-1
                 </p>
-                <p className="text-xs text-gray-500">
-                  Bachelor of Dental Surgery (BDS)
-                </p>
+                
               </div>
             </div>
 

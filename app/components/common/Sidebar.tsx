@@ -81,22 +81,7 @@ export default function Sidebar() {
 
   return (
     <aside className="fixed top-20 left-0 h-[calc(100vh-5rem)] w-72 bg-white shadow p-6 font-poppins z-40 hidden md:flex flex-col">
-      {/* Profile Info */}
-      <div className="text-center mb-6 border-b pb-4">
-        <Image
-          src="/images/dravatar.jpg"
-          alt="Profile"
-          width={90}
-          height={90}
-          className="mx-auto rounded-full object-cover border"
-        />
-        <h3 className="mt-3 text-sm font-semibold text-gray-800 leading-tight">
-          Dr. MADISHETTI ABHILASH
-        </h3>
-        <p className="text-xs text-gray-500">
-          Bachelor of Dental Surgery (BDS)
-        </p>
-      </div>
+      
 
       {/* Menu Items */}
       <div className="space-y-1 flex-1 overflow-y-auto">

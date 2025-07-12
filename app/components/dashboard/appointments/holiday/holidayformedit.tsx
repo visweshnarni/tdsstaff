@@ -86,7 +86,7 @@ export default function HolidayFormEdit({
             </div>
           </div>
         </form>
-      </SheetContent>
+      </SheetContent> 
     </Sheet>
   );
 }

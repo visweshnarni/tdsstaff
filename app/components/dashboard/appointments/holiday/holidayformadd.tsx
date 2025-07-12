@@ -55,7 +55,8 @@ export default function HolidayFormAdd({ open, onClose, onSubmit }: Props) {
             {errors.day && <p className="text-sm text-red-500">Day is required</p>}
           </div>
 
-          <div className="fixed bottom-0 w-full sm:max-w-[50vw] bg-white border-t p-6 flex justify-end gap-2">
+          <div className="fixed bottom-0 w-full sm:max-w-[50vw] bg-white border-t p-6 flex justify-between">
+
             <Button type="button" variant="outline" onClick={onClose}>
               Close
             </Button>

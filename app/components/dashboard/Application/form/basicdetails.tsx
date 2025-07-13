@@ -414,7 +414,7 @@ export default function BasicDetails({
             />
 
             {/* Email */}
-            {/* <FormField
+            <FormField
               name="email"
               render={({ field }) => (
                 <FormItem className="w-full">
@@ -432,9 +432,9 @@ export default function BasicDetails({
                   <FormMessage />
                 </FormItem>
               )}
-            /> */}
+            />
 
-            <FormField
+            {/* <FormField
               name="email"
               render={({ field }) => (
                 <FormItem className="w-full">
@@ -455,7 +455,7 @@ export default function BasicDetails({
                   <FormMessage />
                 </FormItem>
               )}
-            />
+            /> */}
 
             {/* Mobile */}
             <FormField

@@ -11,7 +11,7 @@ import {
   SheetTitle,
 } from "@/components/ui/sheet";
 
-import MultiStepForm from "@/app/components/dashboard/Application/MultiStepForm";
+import MultiStepForm from "@/app/components/dashboard/Application/form/MultiStepForm";
 
 import {
   Table,

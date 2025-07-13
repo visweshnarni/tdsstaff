@@ -3,8 +3,8 @@
 import React from "react";
 import { Button } from "@/components/ui/button";
 import { FileText } from "lucide-react";
-import type { Step1FormValues } from "./form/basicdetails";
-import type { Step2FormValues } from "./form/conditionalfields";
+import type { Step1FormValues } from "./basicdetails";
+import type { Step2FormValues } from "./conditionalfields";
 
 type FormData = Partial<Step1FormValues & Step2FormValues>;
 

@@ -114,6 +114,10 @@ export const basicDetailsSchema = z.object({
     ],
     { required_error: "Category is required" }
   ),
+  passportPhoto: z
+  .instanceof(File, { message: "Passport size photo is required" })
+  .refine((file) => file.size > 0, "Passport size photo is required"),
+
 
   registrationCategory: z.enum(
     [

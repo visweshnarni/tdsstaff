@@ -37,8 +37,8 @@ export default function AddDentistForm({ open, onClose, onSubmit }: Props) {
 
   const submitHandler = (data: DentistRecord) => {
     onSubmit(data);
-    onClose();     // close drawer
-    reset();       // then reset the form
+    onClose();
+    reset();
   };
 
   return (
@@ -55,7 +55,7 @@ export default function AddDentistForm({ open, onClose, onSubmit }: Props) {
 
         <form
           onSubmit={handleSubmit(submitHandler)}
-          className="grid grid-cols-1 gap-6 px-6 pt-6 pb-24"
+          className="grid grid-cols-1 sm:grid-cols-2 gap-6 px-6 pt-6 pb-40"
         >
           <div>
             <Label className="block mb-2">Membership Number *</Label>
@@ -64,7 +64,9 @@ export default function AddDentistForm({ open, onClose, onSubmit }: Props) {
           </div>
 
           <div>
-            <Label className="block mb-2">Full Name *</Label>
+            <Label className="block mb-2">
+              Full Name (as per BDS Provisional degree) *
+            </Label>
             <Input {...register('name', { required: true })} />
             {errors.name && <p className="text-sm text-red-500">Required field</p>}
           </div>
@@ -94,7 +96,7 @@ export default function AddDentistForm({ open, onClose, onSubmit }: Props) {
           </div>
 
           {/* Footer Buttons */}
-          <div className="fixed bottom-0 w-full sm:max-w-[50vw] bg-white border-t border-[#004d36]/20 p-6 flex justify-between">
+          <div className="col-span-1 sm:col-span-2 fixed bottom-0 w-full sm:max-w-[50vw] bg-white border-t border-[#004d36]/20 p-6 flex justify-between">
             <Button
               type="button"
               variant="outline"

@@ -2,6 +2,17 @@
 
 import { useMemo, useState } from "react";
 import { VerificationRecord } from "@/app/types/verification";
+import { PlusCircle, ChevronLeft, ChevronRight } from "lucide-react";
+
+import {
+  Sheet,
+  SheetContent,
+  SheetHeader,
+  SheetTitle,
+} from "@/components/ui/sheet";
+
+import MultiStepForm from "@/app/components/dashboard/Application/MultiStepForm";
+
 import {
   Table,
   TableHeader,
@@ -12,7 +23,6 @@ import {
 } from "@/components/ui/table";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
-import { ChevronLeft, ChevronRight } from "lucide-react";
 
 interface Props {
   data: VerificationRecord[];
@@ -23,6 +33,7 @@ const itemsPerPage = 10;
 export default function VerificationPending({ data }: Props) {
   const [search, setSearch] = useState("");
   const [currentPage, setCurrentPage] = useState(1);
+  const [showFormSheet, setShowFormSheet] = useState(false);
 
   const filteredData = useMemo(() => {
     return data.filter((item) =>
@@ -40,8 +51,8 @@ export default function VerificationPending({ data }: Props) {
 
   return (
     <div className="rounded-md border bg-white shadow-md overflow-x-auto">
-      {/* Search bar */}
-      <div className="p-4 border-b">
+      {/* Top Bar with Search and Add Button */}
+      <div className="p-4 border-b flex flex-col md:flex-row justify-between gap-3">
         <Input
           placeholder="Search by name"
           className="w-full md:w-1/2"
@@ -51,6 +62,33 @@ export default function VerificationPending({ data }: Props) {
             setCurrentPage(1);
           }}
         />
+
+        {/* Sheet for Application Form */}
+        <Sheet open={showFormSheet} onOpenChange={setShowFormSheet}>
+
+          <SheetContent
+            side="right"
+            className="w-full sm:max-w-[50vw] max-h-screen overflow-y-auto"
+          >
+           <SheetHeader>
+  <SheetTitle className="text-2xl font-francois-one text-[#00694A] text-center mt-6">
+    
+  </SheetTitle>
+</SheetHeader>
+
+            <div className="mt-4">
+              <MultiStepForm onClose={() => setShowFormSheet(false)} />
+            </div>
+          </SheetContent>
+
+          <Button
+            onClick={() => setShowFormSheet(true)}
+            className="bg-[#00694A] hover:bg-[#004d36] text-white"
+          >
+            <PlusCircle className="mr-2 h-4 w-4" />
+            Add Application
+          </Button>
+        </Sheet>
       </div>
 
       {/* Table */}
@@ -75,23 +113,22 @@ export default function VerificationPending({ data }: Props) {
                 <TableCell className="text-center px-2 py-2">{item.email}</TableCell>
                 <TableCell className="text-center px-2 py-2">{item.verificationStatus}</TableCell>
                 <TableCell className="text-center px-2 py-2 space-x-2">
-  <Button
-    variant="outline"
-    className="text-[#00694A] border-[#00694A] hover:bg-[#00694A] hover:text-white"
-    onClick={() => alert("Verify action triggered!")}
-  >
-    Verify
-  </Button>
-  <span className="text-gray-400 font-semibold">or</span>
-  <Button
-    variant="outline"
-    className="text-blue-600 border-blue-600 hover:bg-blue-600 hover:text-white"
-    onClick={() => alert("View action triggered!")}
-  >
-    View
-  </Button>
-</TableCell>
-
+                  <Button
+                    variant="outline"
+                    className="text-[#00694A] border-[#00694A] hover:bg-[#00694A] hover:text-white"
+                    onClick={() => alert("Verify action triggered!")}
+                  >
+                    Verify
+                  </Button>
+                  <span className="text-gray-400 font-semibold">or</span>
+                  <Button
+                    variant="outline"
+                    className="text-blue-600 border-blue-600 hover:bg-blue-600 hover:text-white"
+                    onClick={() => alert("View action triggered!")}
+                  >
+                    View
+                  </Button>
+                </TableCell>
                 <TableCell className="text-center px-2 py-2">{item.mobile}</TableCell>
                 <TableCell className="text-center px-2 py-2">{item.date}</TableCell>
               </TableRow>

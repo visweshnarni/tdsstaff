@@ -1,7 +1,8 @@
 "use client";
 
-import { useState, useMemo } from "react";
-import { GSLPaymentPendingRecord } from "@/app/types/gsl/payment";
+import { useMemo, useState } from "react";
+import { useRouter } from "next/navigation";
+import { GoodStandingPaymentRecord } from "@/app/types/gsl/payment";
 import {
   Table,
   TableHeader,
@@ -15,81 +16,85 @@ import { Button } from "@/components/ui/button";
 import { ChevronLeft, ChevronRight } from "lucide-react";
 
 interface Props {
-  data: GSLPaymentPendingRecord[];
+  data: GoodStandingPaymentRecord[];
 }
 
-const ITEMS_PER_PAGE = 10;
+const itemsPerPage = 10;
 
-export default function GSLPaymentPending({ data }: Props) {
+export default function PaymentPending({ data }: Props) {
   const [search, setSearch] = useState("");
-  const [page, setPage]     = useState(1);
+  const [currentPage, setCurrentPage] = useState(1);
+  const router = useRouter();
 
-  /* 🔍 filter across every field */
-  const filtered = useMemo(() => {
-    return data.filter(item =>
-      Object.values(item).some(v =>
-        v.toLowerCase().includes(search.toLowerCase())
+  const filteredData = useMemo(() => {
+    return data.filter((item) =>
+      Object.values(item).some((val) =>
+        val.toLowerCase().includes(search.toLowerCase())
       )
     );
   }, [data, search]);
 
-  const totalPages = Math.ceil(filtered.length / ITEMS_PER_PAGE);
+  const paginatedData = useMemo(() => {
+    const start = (currentPage - 1) * itemsPerPage;
+    return filteredData.slice(start, start + itemsPerPage);
+  }, [filteredData, currentPage]);
 
-  const visible = useMemo(() => {
-    const start = (page - 1) * ITEMS_PER_PAGE;
-    return filtered.slice(start, start + ITEMS_PER_PAGE);
-  }, [filtered, page]);
+  const totalPages = Math.ceil(filteredData.length / itemsPerPage);
 
   return (
     <div className="rounded-md border bg-white shadow-md overflow-x-auto">
-      {/* 🔍 search */}
-      <div className="p-4 border-b">
+      {/* Search */}
+      <div className="p-4 border-b flex flex-col md:flex-row justify-between gap-4">
         <Input
           placeholder="Search by any field"
-          className="w-full md:w-1/2"
           value={search}
-          onChange={e => {
+          onChange={(e) => {
             setSearch(e.target.value);
-            setPage(1);
+            setCurrentPage(1);
           }}
+          className="w-full md:w-1/2"
         />
       </div>
 
-      {/* 📊 table */}
-      <Table className="w-full table-auto text-sm">
+      {/* Table */}
+      <Table className="w-full text-sm">
         <TableHeader>
           <TableRow>
-            <TableHead className="text-center">Membership&nbsp;Number</TableHead>
+            <TableHead className="text-center">Membership Number</TableHead>
             <TableHead className="text-center">Name</TableHead>
             <TableHead className="text-center">Email</TableHead>
             <TableHead className="text-center">Mobile</TableHead>
+            <TableHead className="text-center">Date</TableHead>
+            <TableHead className="text-center">Category</TableHead>
             <TableHead className="text-center">Action</TableHead>
-            <TableHead className="text-center">Staff&nbsp;Name</TableHead>
           </TableRow>
         </TableHeader>
         <TableBody>
-          {visible.length ? (
-            visible.map((item, idx) => (
+          {paginatedData.length > 0 ? (
+            paginatedData.map((item, idx) => (
               <TableRow key={idx}>
                 <TableCell className="text-center">{item.membershipNumber}</TableCell>
                 <TableCell className="text-center">{item.name}</TableCell>
                 <TableCell className="text-center">{item.email}</TableCell>
                 <TableCell className="text-center">{item.mobile}</TableCell>
+                <TableCell className="text-center">{item.date}</TableCell>
+                <TableCell className="text-center">{item.category}</TableCell>
                 <TableCell className="text-center">
                   <Button
                     variant="outline"
                     className="text-[#00694A] border-[#00694A] hover:bg-[#00694A] hover:text-white"
-                    onClick={() => alert(`Collect payment for ${item.name}`)}
+                    onClick={() =>
+                      router.push("/dashboard/gsl/paymentpending/accept")
+                    }
                   >
-                    Collect
+                    View
                   </Button>
                 </TableCell>
-                <TableCell className="text-center">{item.staffName}</TableCell>
               </TableRow>
             ))
           ) : (
             <TableRow>
-              <TableCell colSpan={6} className="text-center py-6 text-gray-500">
+              <TableCell colSpan={7} className="text-center py-6 text-gray-500">
                 No matching records found.
               </TableCell>
             </TableRow>
@@ -97,21 +102,19 @@ export default function GSLPaymentPending({ data }: Props) {
         </TableBody>
       </Table>
 
-      {/* 📄 pagination */}
+      {/* Pagination */}
       {totalPages > 1 && (
         <div className="flex justify-between items-center px-4 py-3 border-t">
           <p className="text-sm text-gray-600">
-            Showing{" "}
-            {Math.min((page - 1) * ITEMS_PER_PAGE + 1, filtered.length)} to{" "}
-            {Math.min(page * ITEMS_PER_PAGE, filtered.length)} of{" "}
-            {filtered.length} records
+            Showing {Math.min((currentPage - 1) * itemsPerPage + 1, filteredData.length)} to{" "}
+            {Math.min(currentPage * itemsPerPage, filteredData.length)} of {filteredData.length} records
           </p>
           <div className="flex gap-2">
             <Button
               variant="outline"
               size="icon"
-              disabled={page === 1}
-              onClick={() => setPage(p => p - 1)}
+              disabled={currentPage === 1}
+              onClick={() => setCurrentPage((prev) => prev - 1)}
               className="text-[#00694A] border-[#00694A] hover:bg-[#00694A] hover:text-white"
             >
               <ChevronLeft className="h-4 w-4" />
@@ -119,8 +122,8 @@ export default function GSLPaymentPending({ data }: Props) {
             <Button
               variant="outline"
               size="icon"
-              disabled={page === totalPages}
-              onClick={() => setPage(p => p + 1)}
+              disabled={currentPage === totalPages}
+              onClick={() => setCurrentPage((prev) => prev + 1)}
               className="text-[#00694A] border-[#00694A] hover:bg-[#00694A] hover:text-white"
             >
               <ChevronRight className="h-4 w-4" />

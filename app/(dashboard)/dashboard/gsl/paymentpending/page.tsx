@@ -1,23 +1,25 @@
-import GSLPaymentPending from "@/app/components/dashboard/gsl/paymentpending";
-import { GSLPaymentPendingRecord } from "@/app/types/gsl/payment";
+import PaymentPending from "@/app/components/dashboard/gsl/paymentpending";
+import { GoodStandingPaymentRecord } from "@/app/types/gsl/payment";
 
-const dummyData: GSLPaymentPendingRecord[] = [
+const dummyData: GoodStandingPaymentRecord[] = [
   {
-    membershipNumber: "GSL2001",
-    name: "Priya Nair",
-    email: "priya@example.com",
+    membershipNumber: "MEM001",
+    name: "Dr. Kavya Rao",
+    email: "kavya.rao@example.com",
     mobile: "9876543210",
-    staffName: "Admin A",
+    date: "2024-07-10",
+    category: "Good Standing",
   },
   {
-    membershipNumber: "GSL2002",
-    name: "Karan Deshmukh",
-    email: "karan@example.com",
+    membershipNumber: "MEM002",
+    name: "Dr. Anil Mehta",
+    email: "anil.mehta@example.com",
     mobile: "9123456789",
-    staffName: "Admin B",
+    date: "2024-07-12",
+    category: "Good Standing",
   },
 ];
 
 export default function Page() {
-  return <GSLPaymentPending data={dummyData} />;
+  return <PaymentPending data={dummyData} />;
 }

@@ -1,7 +1,8 @@
-export interface GSLPaymentPendingRecord {
+export interface GoodStandingPaymentRecord {
   membershipNumber: string;
   name: string;
   email: string;
   mobile: string;
-  staffName: string;
+  date: string;
+  category: string;
 }

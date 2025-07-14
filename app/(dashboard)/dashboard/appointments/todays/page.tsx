@@ -3,20 +3,24 @@ import { TodayAppointmentRecord } from "@/app/types/appointments/today";
 
 const dummyData: TodayAppointmentRecord[] = [
   {
-    registrationNumber: "REG001",
+    applicationNumber: "APP001",
+    membershipNumber: "MEM001",
     type: "Consultation",
     name: "Dr. Aarti Sharma",
     email: "aarti@example.com",
     mobile: "9876543210",
     timeAndDate: "2025-07-08 10:30 AM",
+    category: "General",
   },
   {
-    registrationNumber: "REG002",
+    applicationNumber: "APP002",
+    membershipNumber: "MEM002",
     type: "Follow-up",
     name: "Dr. Vijay Kumar",
     email: "vijay@example.com",
     mobile: "9123456789",
     timeAndDate: "2025-07-08 2:15 PM",
+    category: "Orthodontics",
   },
 ];
 

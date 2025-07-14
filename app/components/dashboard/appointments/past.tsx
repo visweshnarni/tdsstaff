@@ -41,7 +41,6 @@ export default function PastAppointments({ data }: Props) {
 
   return (
     <div className="rounded-md border bg-white shadow-md overflow-x-auto">
-      {/* Search */}
       <div className="p-4 border-b">
         <Input
           placeholder="Search by any field"
@@ -54,41 +53,43 @@ export default function PastAppointments({ data }: Props) {
         />
       </div>
 
-      {/* Table */}
-      <Table className="w-full table-auto text-sm">
+      <Table className="w-full text-sm table-auto">
         <TableHeader>
           <TableRow>
-            <TableHead className="text-center">Registration Number</TableHead>
+            <TableHead className="text-center">Application Number</TableHead>
+            <TableHead className="text-center">Membership Number</TableHead>
             <TableHead className="text-center">Type</TableHead>
             <TableHead className="text-center">Name</TableHead>
             <TableHead className="text-center">Email</TableHead>
             <TableHead className="text-center">Mobile</TableHead>
             <TableHead className="text-center">Time & Date</TableHead>
+            <TableHead className="text-center">Category</TableHead>
           </TableRow>
         </TableHeader>
         <TableBody>
           {paginated.length > 0 ? (
             paginated.map((item, idx) => (
               <TableRow key={idx}>
-                <TableCell className="text-center">{item.registrationNumber}</TableCell>
+                <TableCell className="text-center">{item.applicationNumber}</TableCell>
+                <TableCell className="text-center">{item.membershipNumber}</TableCell>
                 <TableCell className="text-center">{item.type}</TableCell>
                 <TableCell className="text-center">{item.name}</TableCell>
                 <TableCell className="text-center">{item.email}</TableCell>
                 <TableCell className="text-center">{item.mobile}</TableCell>
                 <TableCell className="text-center">{item.timeAndDate}</TableCell>
+                <TableCell className="text-center">{item.category}</TableCell>
               </TableRow>
             ))
           ) : (
             <TableRow>
-              <TableCell colSpan={6} className="text-center py-6 text-gray-500">
-                No matching records found.
+              <TableCell colSpan={8} className="text-center py-6 text-gray-500">
+                No past appointments found.
               </TableCell>
             </TableRow>
           )}
         </TableBody>
       </Table>
 
-      {/* Pagination */}
       {totalPages > 1 && (
         <div className="flex justify-between items-center px-4 py-3 border-t">
           <p className="text-sm text-gray-600">

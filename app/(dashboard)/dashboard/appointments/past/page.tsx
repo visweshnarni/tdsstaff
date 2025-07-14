@@ -3,20 +3,24 @@ import { PastAppointmentRecord } from "@/app/types/appointments/past";
 
 const dummyData: PastAppointmentRecord[] = [
   {
-    registrationNumber: "REG123",
+    applicationNumber: "APP1001",
+    membershipNumber: "MEM1001",
     type: "Consultation",
-    name: "Dr. Meera Patel",
-    email: "meera@example.com",
+    name: "Dr. Ravi Teja",
+    email: "ravi@example.com",
     mobile: "9876543210",
-    timeAndDate: "2025-06-28 03:00 PM",
+    timeAndDate: "2025-06-25 11:00 AM",
+    category: "Oral Surgery",
   },
   {
-    registrationNumber: "REG456",
-    type: "Surgery",
-    name: "Dr. Sameer Reddy",
-    email: "sameer@example.com",
+    applicationNumber: "APP1002",
+    membershipNumber: "MEM1002",
+    type: "Review",
+    name: "Dr. Sneha Reddy",
+    email: "sneha@example.com",
     mobile: "9123456789",
-    timeAndDate: "2025-06-20 11:00 AM",
+    timeAndDate: "2025-06-26 02:30 PM",
+    category: "Endodontics",
   },
 ];
 

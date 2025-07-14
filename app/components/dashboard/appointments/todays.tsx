@@ -58,29 +58,33 @@ export default function TodayAppointments({ data }: Props) {
       <Table className="w-full table-auto text-sm">
         <TableHeader>
           <TableRow>
-            <TableHead className="text-center">Registration Number</TableHead>
+            <TableHead className="text-center">Application Number</TableHead>
+            <TableHead className="text-center">Membership Number</TableHead>
             <TableHead className="text-center">Type</TableHead>
             <TableHead className="text-center">Name</TableHead>
             <TableHead className="text-center">Email</TableHead>
             <TableHead className="text-center">Mobile</TableHead>
             <TableHead className="text-center">Time & Date</TableHead>
+            <TableHead className="text-center">Category</TableHead>
           </TableRow>
         </TableHeader>
         <TableBody>
           {paginated.length > 0 ? (
             paginated.map((item, idx) => (
               <TableRow key={idx}>
-                <TableCell className="text-center">{item.registrationNumber}</TableCell>
+                <TableCell className="text-center">{item.applicationNumber}</TableCell>
+                <TableCell className="text-center">{item.membershipNumber}</TableCell>
                 <TableCell className="text-center">{item.type}</TableCell>
                 <TableCell className="text-center">{item.name}</TableCell>
                 <TableCell className="text-center">{item.email}</TableCell>
                 <TableCell className="text-center">{item.mobile}</TableCell>
                 <TableCell className="text-center">{item.timeAndDate}</TableCell>
+                <TableCell className="text-center">{item.category}</TableCell>
               </TableRow>
             ))
           ) : (
             <TableRow>
-              <TableCell colSpan={6} className="text-center py-6 text-gray-500">
+              <TableCell colSpan={8} className="text-center py-6 text-gray-500">
                 No matching records found.
               </TableCell>
             </TableRow>

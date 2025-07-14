@@ -79,8 +79,8 @@ export default function VerificationPending({ data }: Props) {
                 <TableCell className="text-center">{item.category}</TableCell>
                 <TableCell className="text-center">
                   <Button
-                    variant="outline"
-                    className="text-blue-600 border-blue-600 hover:bg-blue-600 hover:text-white"
+                     variant="outline"
+                    className="text-green-600 border-green-600 hover:bg-green-600 hover:text-white"
                     onClick={() =>
                       router.push(`/dashboard/provisional/verificationpending/accept`)
                     }

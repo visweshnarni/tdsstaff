@@ -83,7 +83,8 @@ export default function NOLVerificationPending({ data }: Props) {
                 <TableCell className="text-center">{item.category}</TableCell>
                 <TableCell className="text-center">
                   <Button
-                    className="text-white bg-[#00694A] hover:bg-[#004d36]"
+                     variant="outline"
+                    className="text-green-600 border-green-600 hover:bg-green-600 hover:text-white"
                     onClick={() => router.push("/dashboard/nol/verificationpending/accept")}
                   >
                     View

@@ -79,8 +79,8 @@ export default function PaymentPending({ data }: Props) {
                 <TableCell className="text-center px-2 py-2">{item.category}</TableCell>
                 <TableCell className="text-center px-2 py-2">
                   <Button
-                    variant="outline"
-                    className="text-blue-600 border-blue-600 hover:bg-blue-600 hover:text-white"
+                     variant="outline"
+                    className="text-green-600 border-green-600 hover:bg-green-600 hover:text-white"
                     onClick={() => router.push("/dashboard/application/paymentpending/paymentaccept")}
                   >
                     View

@@ -1,8 +1,9 @@
-export interface MembershipVerificationRecord {
-  membershipNumber: string;
+export interface RenewalRecord {
+  id: string;
+  membershipNumber: string;  // Instead of trNumber
   name: string;
   email: string;
-  verificationStatus: string;
   mobile: string;
   date: string;
+  category: string;
 }

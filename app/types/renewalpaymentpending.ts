@@ -1,7 +1,9 @@
 export interface RenewalPaymentRecord {
-  category: string;
-  regId: string;
+  id: string;
+  membershipNumber: string;
   name: string;
   email: string;
   mobile: string;
+  date: string;
+  category: string;
 }

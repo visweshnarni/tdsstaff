@@ -1,8 +1,8 @@
-export interface RestUserRecord {
+export interface DentistRecord {
   membershipNumber: string;
   name: string;
   email: string;
-  verificationStatus: string;
   mobile: string;
   date: string;
+  category: string;
 }

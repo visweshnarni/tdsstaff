@@ -1,6 +1,7 @@
 "use client";
 
 import { useMemo, useState } from "react";
+import { useRouter } from "next/navigation";
 import { PaymentRecord } from "@/app/types/payment";
 import {
   Table,
@@ -23,8 +24,8 @@ const itemsPerPage = 10;
 export default function PaymentPending({ data }: Props) {
   const [search, setSearch] = useState("");
   const [currentPage, setCurrentPage] = useState(1);
+  const router = useRouter();
 
-  // Filter across all fields
   const filteredData = useMemo(() => {
     return data.filter((item) => {
       const values = Object.values(item).join(" ").toLowerCase();
@@ -59,27 +60,37 @@ export default function PaymentPending({ data }: Props) {
       <Table className="w-full table-auto text-sm">
         <TableHeader>
           <TableRow>
-            <TableHead className="text-center px-2 py-2">Category</TableHead>
-            <TableHead className="text-center px-2 py-2">TR Number</TableHead>
             <TableHead className="text-center px-2 py-2">Name</TableHead>
             <TableHead className="text-center px-2 py-2">Email</TableHead>
             <TableHead className="text-center px-2 py-2">Mobile</TableHead>
+            <TableHead className="text-center px-2 py-2">Date</TableHead>
+            <TableHead className="text-center px-2 py-2">Category</TableHead>
+            <TableHead className="text-center px-2 py-2">Action</TableHead>
           </TableRow>
         </TableHeader>
         <TableBody>
           {paginatedData.length > 0 ? (
             paginatedData.map((item, index) => (
               <TableRow key={index}>
-                <TableCell className="text-center px-2 py-2">{item.category}</TableCell>
-                <TableCell className="text-center px-2 py-2">{item.trNumber}</TableCell>
                 <TableCell className="text-center px-2 py-2">{item.name}</TableCell>
                 <TableCell className="text-center px-2 py-2">{item.email}</TableCell>
                 <TableCell className="text-center px-2 py-2">{item.mobile}</TableCell>
+                <TableCell className="text-center px-2 py-2">{item.date}</TableCell>
+                <TableCell className="text-center px-2 py-2">{item.category}</TableCell>
+                <TableCell className="text-center px-2 py-2">
+                  <Button
+                    variant="outline"
+                    className="text-blue-600 border-blue-600 hover:bg-blue-600 hover:text-white"
+                    onClick={() => router.push("/dashboard/application/paymentpending/paymentaccept")}
+                  >
+                    View
+                  </Button>
+                </TableCell>
               </TableRow>
             ))
           ) : (
             <TableRow>
-              <TableCell colSpan={5} className="text-center py-6 text-gray-500">
+              <TableCell colSpan={6} className="text-center py-6 text-gray-500">
                 No matching records found.
               </TableCell>
             </TableRow>

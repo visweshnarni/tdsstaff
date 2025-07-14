@@ -14,6 +14,10 @@ export function generateDummyPayments(count: number = 50): PaymentRecord[] {
     trNumber: faker.string.alphanumeric({ length: 10, casing: "upper" }),
     name: faker.person.fullName(),
     email: faker.internet.email(),
-    mobile: "9" + faker.string.numeric(9), // ✅ fixed here
+    mobile: "9" + faker.string.numeric(9),
+    date: faker.date
+      .between({ from: "2024-01-01", to: "2025-07-01" })
+      .toISOString()
+      .split("T")[0], // ✅ date field added
   }));
 }

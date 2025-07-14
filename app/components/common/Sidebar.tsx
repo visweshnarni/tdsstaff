@@ -12,8 +12,8 @@ const menuItems = [
     children: [
       { label: 'Verification Pending', path: '/dashboard/application/verificationpending' },
       { label: 'Payment Pending', path: '/dashboard/application/paymentpending' },
-      { label: 'Rejected Application', path: '/dashboard/application/rejected' },
-      { label: 'Physical Verification', path: '/dashboard/application/physical-verification' },
+      { label: 'Rejected Application', path: '/dashboard/application/rejectedapplication' },
+      { label: 'Physical Verification', path: '/dashboard/application/physicalverification' },
     ],
   },
   {

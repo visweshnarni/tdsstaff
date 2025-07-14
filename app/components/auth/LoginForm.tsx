@@ -4,7 +4,6 @@ import { useState } from "react";
 import { useRouter } from "next/navigation";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
-import ReCAPTCHA from "react-google-recaptcha";
 
 type LoginData = {
   email: string;
@@ -19,15 +18,27 @@ export function LoginForm() {
   });
 
   const [error, setError] = useState<string | null>(null);
+  const [isLoading, setIsLoading] = useState(false);
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    if (!form.email || !form.password) {
-      setError("Email and password are required.");
+    setError(null);
+    setIsLoading(true);
+
+    const hardcodedEmail = "admin@tdc.com";
+    const hardcodedPassword = "tdc@123";
+
+    await new Promise((res) => setTimeout(res, 2000));
+
+    if (form.email === hardcodedEmail && form.password === hardcodedPassword) {
+      localStorage.setItem("token", "mock-token");
+      localStorage.setItem("showWelcomeToast", "true");
+      router.push("/dashboard");
     } else {
-      setError(null);
-      alert("Login successful!");
+      setError("Invalid email or password");
     }
+
+    setIsLoading(false);
   };
 
   return (
@@ -80,15 +91,6 @@ export function LoginForm() {
         </button>
       </div>
 
-      {/* ReCAPTCHA */}
-      <div>
-        <label className="block text-label font-normal mb-2">reCAPTCHA</label>
-        <ReCAPTCHA
-          sitekey="your_site_key_here"
-          onChange={(val) => console.log("captcha", val)}
-        />
-      </div>
-
       {/* Error */}
       {error && <p className="text-sm text-red-600">{error}</p>}
 
@@ -96,8 +98,9 @@ export function LoginForm() {
       <Button
         type="submit"
         className="w-full text-button font-medium bg-[#00694A] hover:bg-[#008562] text-white mt-10"
+        disabled={isLoading}
       >
-        Login
+        {isLoading ? "Signing in..." : "Login"}
       </Button>
 
       {/* Route Switch */}

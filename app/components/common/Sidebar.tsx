@@ -68,6 +68,14 @@ const menuItems = [
       { label: 'Holidays', path: '/dashboard/appointments/holidays' },
     ],
   },
+  {
+    label: 'News',
+    isDropdown: true,
+    children: [
+      { label: 'Announcements', path: '/dashboard/news/announcements' },
+      { label: 'Events', path: '/dashboard/news/events' },
+    ],
+  },
 ];
 
 export default function Sidebar() {

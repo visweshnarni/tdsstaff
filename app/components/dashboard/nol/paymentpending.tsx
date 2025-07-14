@@ -1,6 +1,7 @@
 "use client";
 
-import { useMemo, useState } from "react";
+import { useState, useMemo } from "react";
+import { useRouter } from "next/navigation";
 import { NOLPaymentPendingRecord } from "@/app/types/nol/payment";
 import {
   Table,
@@ -23,6 +24,7 @@ const ITEMS_PER_PAGE = 10;
 export default function NOLPaymentPending({ data }: Props) {
   const [search, setSearch] = useState("");
   const [page, setPage] = useState(1);
+  const router = useRouter();
 
   const filtered = useMemo(() => {
     return data.filter((item) =>
@@ -62,8 +64,9 @@ export default function NOLPaymentPending({ data }: Props) {
             <TableHead className="text-center">Name</TableHead>
             <TableHead className="text-center">Email</TableHead>
             <TableHead className="text-center">Mobile</TableHead>
+            <TableHead className="text-center">Date</TableHead>
+            <TableHead className="text-center">Category</TableHead>
             <TableHead className="text-center">Action</TableHead>
-            <TableHead className="text-center">Staff Name</TableHead>
           </TableRow>
         </TableHeader>
         <TableBody>
@@ -74,21 +77,21 @@ export default function NOLPaymentPending({ data }: Props) {
                 <TableCell className="text-center">{item.name}</TableCell>
                 <TableCell className="text-center">{item.email}</TableCell>
                 <TableCell className="text-center">{item.mobile}</TableCell>
+                <TableCell className="text-center">{item.date}</TableCell>
+                <TableCell className="text-center">{item.category}</TableCell>
                 <TableCell className="text-center">
                   <Button
-                    variant="outline"
-                    className="text-[#00694A] border-[#00694A] hover:bg-[#00694A] hover:text-white"
-                    onClick={() => alert(`Collect payment from ${item.name}`)}
+                    className="text-white bg-[#00694A] hover:bg-[#004d36]"
+                    onClick={() => router.push("/dashboard/nol/paymentpending/accept")}
                   >
-                    Collect
+                    View
                   </Button>
                 </TableCell>
-                <TableCell className="text-center">{item.staffName}</TableCell>
               </TableRow>
             ))
           ) : (
             <TableRow>
-              <TableCell colSpan={6} className="text-center py-6 text-gray-500">
+              <TableCell colSpan={7} className="text-center py-6 text-gray-500">
                 No matching records found.
               </TableCell>
             </TableRow>

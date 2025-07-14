@@ -3,5 +3,6 @@ export interface NOLPaymentPendingRecord {
   name: string;
   email: string;
   mobile: string;
-  staffName: string;
+  date: string;
+  category: string;
 }

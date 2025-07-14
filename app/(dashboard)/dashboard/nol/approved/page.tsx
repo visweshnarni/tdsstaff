@@ -1,18 +1,26 @@
+"use client";
+
 import NOLApproved from "@/app/components/dashboard/nol/approved";
 import { NOLApprovedRecord } from "@/app/types/nol/approved";
 
 const dummyData: NOLApprovedRecord[] = [
   {
-    membershipNumber: "NOL5001",
-    name: "Dr. Sahana Iyer",
-    email: "sahana@example.com",
+    applicationNumber: "APP-NOL-001",
+    membershipNumber: "NOL001",
+    name: "Dr. Kavitha Iyer",
+    email: "kavitha.iyer@example.com",
     mobile: "9876543210",
+    date: "2024-07-01",
+    category: "NOC",
   },
   {
-    membershipNumber: "NOL5002",
-    name: "Dr. Amarjeet Singh",
-    email: "amarjeet@example.com",
+    applicationNumber: "APP-NOL-002",
+    membershipNumber: "NOL002",
+    name: "Dr. Vikas Sharma",
+    email: "vikas.sharma@example.com",
     mobile: "9123456789",
+    date: "2024-07-03",
+    category: "Temporary NOC",
   },
 ];
 

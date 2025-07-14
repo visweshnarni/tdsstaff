@@ -1,21 +1,29 @@
-import NOLVerificationPending from "@/app/components/dashboard/nol/verificationpending";
-import { NOLVerificationRecord } from "@/app/types/nol/verification";
+'use client';
 
-const dummyData: NOLVerificationRecord[] = [
+import VerificationPending from "@/app/components/dashboard/nol/verificationpending";
+import { NOCVerificationRecord } from "@/app/types/nol/verification";
+
+const dummyData: NOCVerificationRecord[] = [
   {
-    membershipNumber: "NOL2001",
-    name: "Pooja Reddy",
-    email: "pooja@example.com",
+    applicationNumber: "APP001",
+    membershipNumber: "MEM001",
+    name: "Dr. Asha Reddy",
+    email: "asha.reddy@example.com",
     mobile: "9876543210",
+    date: "2024-08-01",
+    category: "No Objection Certificate",
   },
   {
-    membershipNumber: "NOL2002",
-    name: "Rahul Sharma",
-    email: "rahul@example.com",
+    applicationNumber: "APP002",
+    membershipNumber: "MEM002",
+    name: "Dr. Raj Mehra",
+    email: "raj.mehra@example.com",
     mobile: "9123456789",
+    date: "2024-08-03",
+    category: "No Objection Certificate",
   },
 ];
 
 export default function Page() {
-  return <NOLVerificationPending data={dummyData} />;
+  return <VerificationPending data={dummyData} />;
 }

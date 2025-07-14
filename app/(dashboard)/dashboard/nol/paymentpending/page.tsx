@@ -1,20 +1,24 @@
+'use client';
+
 import NOLPaymentPending from "@/app/components/dashboard/nol/paymentpending";
 import { NOLPaymentPendingRecord } from "@/app/types/nol/payment";
 
 const dummyData: NOLPaymentPendingRecord[] = [
   {
-    membershipNumber: "NOL3001",
-    name: "Dr. Keerthi Reddy",
-    email: "keerthi@example.com",
+    membershipNumber: "NOL001",
+    name: "Dr. Suresh Iyer",
+    email: "suresh.iyer@example.com",
     mobile: "9876543210",
-    staffName: "Admin A",
+    date: "2024-07-01",
+    category: "No Objection Certificate",
   },
   {
-    membershipNumber: "NOL3002",
-    name: "Dr. Harsha Mehta",
-    email: "harsha@example.com",
-    mobile: "9876501234",
-    staffName: "Admin B",
+    membershipNumber: "NOL002",
+    name: "Dr. Lakshmi R",
+    email: "lakshmi.r@example.com",
+    mobile: "9123456789",
+    date: "2024-07-03",
+    category: "Temporary NOC",
   },
 ];
 

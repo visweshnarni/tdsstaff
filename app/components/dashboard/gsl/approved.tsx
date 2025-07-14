@@ -2,6 +2,7 @@
 
 import { useMemo, useState } from "react";
 import { GoodStandingApprovedRecord } from "@/app/types/gsl/approved";
+import jsPDF from "jspdf";
 import {
   Table,
   TableHeader,
@@ -39,30 +40,27 @@ export default function ApprovedList({ data }: Props) {
 
   const totalPages = Math.ceil(filteredData.length / itemsPerPage);
 
-  // ⬇ PDF Download Function for a row
   const downloadPDF = (row: GoodStandingApprovedRecord) => {
-    const content = `
-      Application Number: ${row.applicationNumber}
-      Membership Number: ${row.membershipNumber}
-      Name: ${row.name}
-      Email: ${row.email}
-      Mobile: ${row.mobile}
-      Date: ${row.date}
-      Category: ${row.category}
-    `;
+    const doc = new jsPDF();
 
-    const blob = new Blob([content], { type: "application/pdf" });
-    const link = document.createElement("a");
-    link.href = URL.createObjectURL(blob);
-    link.download = `${row.membershipNumber}_details.pdf`;
-    document.body.appendChild(link);
-    link.click();
-    document.body.removeChild(link);
+    doc.setFontSize(14);
+    doc.text("Member Details", 20, 20);
+
+    doc.setFontSize(12);
+    doc.text(`Application Number: ${row.applicationNumber}`, 20, 40);
+    doc.text(`Membership Number: ${row.membershipNumber}`, 20, 50);
+    doc.text(`Name: ${row.name}`, 20, 60);
+    doc.text(`Email: ${row.email}`, 20, 70);
+    doc.text(`Mobile: ${row.mobile}`, 20, 80);
+    doc.text(`Date: ${row.date}`, 20, 90);
+    doc.text(`Category: ${row.category}`, 20, 100);
+
+    doc.save(`${row.membershipNumber}_details.pdf`);
   };
 
   return (
     <div className="rounded-md border bg-white shadow-md overflow-x-auto">
-      {/* Search */}
+      {/* Search bar */}
       <div className="p-4 border-b flex flex-col md:flex-row justify-between gap-4">
         <Input
           placeholder="Search"
@@ -103,11 +101,11 @@ export default function ApprovedList({ data }: Props) {
                 <TableCell className="text-center">
                   <Button
                     variant="outline"
-                    size="icon"
-                    className="text-[#00694A] border-[#00694A] hover:bg-[#00694A] hover:text-white"
+                    className="text-green-600 border-green-600 hover:bg-green-600 hover:text-white"
                     onClick={() => downloadPDF(row)}
                   >
-                    <FileDown className="h-4 w-4" />
+                    <FileDown className="w-4 h-4 mr-1" />
+                    View
                   </Button>
                 </TableCell>
               </TableRow>

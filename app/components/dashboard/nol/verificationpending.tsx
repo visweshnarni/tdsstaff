@@ -1,7 +1,8 @@
 "use client";
 
 import { useState, useMemo } from "react";
-import { NOLVerificationRecord } from "@/app/types/nol/verification";
+import { useRouter } from "next/navigation";
+import { NOCVerificationRecord } from "@/app/types/nol/verification";
 import {
   Table,
   TableHeader,
@@ -15,7 +16,7 @@ import { Button } from "@/components/ui/button";
 import { ChevronLeft, ChevronRight } from "lucide-react";
 
 interface Props {
-  data: NOLVerificationRecord[];
+  data: NOCVerificationRecord[];
 }
 
 const ITEMS_PER_PAGE = 10;
@@ -23,6 +24,7 @@ const ITEMS_PER_PAGE = 10;
 export default function NOLVerificationPending({ data }: Props) {
   const [search, setSearch] = useState("");
   const [page, setPage] = useState(1);
+  const router = useRouter();
 
   const filtered = useMemo(() => {
     return data.filter((item) =>
@@ -58,10 +60,13 @@ export default function NOLVerificationPending({ data }: Props) {
       <Table className="w-full table-auto text-sm">
         <TableHeader>
           <TableRow>
+            <TableHead className="text-center">Application Number</TableHead>
             <TableHead className="text-center">Membership Number</TableHead>
             <TableHead className="text-center">Name</TableHead>
             <TableHead className="text-center">Email</TableHead>
             <TableHead className="text-center">Mobile</TableHead>
+            <TableHead className="text-center">Date</TableHead>
+            <TableHead className="text-center">Category</TableHead>
             <TableHead className="text-center">Action</TableHead>
           </TableRow>
         </TableHeader>
@@ -69,33 +74,26 @@ export default function NOLVerificationPending({ data }: Props) {
           {paginated.length > 0 ? (
             paginated.map((item, idx) => (
               <TableRow key={idx}>
+                <TableCell className="text-center">{item.applicationNumber}</TableCell>
                 <TableCell className="text-center">{item.membershipNumber}</TableCell>
                 <TableCell className="text-center">{item.name}</TableCell>
                 <TableCell className="text-center">{item.email}</TableCell>
                 <TableCell className="text-center">{item.mobile}</TableCell>
-                <TableCell className="text-center px-2 py-2 space-x-2">
-  <Button
-    variant="outline"
-    className="text-[#00694A] border-[#00694A] hover:bg-[#00694A] hover:text-white"
-    onClick={() => alert("Verify action triggered!")}
-  >
-    Verify
-  </Button>
-  <span className="text-gray-400 font-semibold">or</span>
-  <Button
-    variant="outline"
-    className="text-blue-600 border-blue-600 hover:bg-blue-600 hover:text-white"
-    onClick={() => alert("View action triggered!")}
-  >
-    View
-  </Button>
-</TableCell>
-
+                <TableCell className="text-center">{item.date}</TableCell>
+                <TableCell className="text-center">{item.category}</TableCell>
+                <TableCell className="text-center">
+                  <Button
+                    className="text-white bg-[#00694A] hover:bg-[#004d36]"
+                    onClick={() => router.push("/dashboard/nol/verificationpending/accept")}
+                  >
+                    View
+                  </Button>
+                </TableCell>
               </TableRow>
             ))
           ) : (
             <TableRow>
-              <TableCell colSpan={5} className="text-center py-6 text-gray-500">
+              <TableCell colSpan={8} className="text-center py-6 text-gray-500">
                 No matching records found.
               </TableCell>
             </TableRow>
@@ -107,7 +105,8 @@ export default function NOLVerificationPending({ data }: Props) {
       {totalPages > 1 && (
         <div className="flex justify-between items-center px-4 py-3 border-t">
           <p className="text-sm text-gray-600">
-            Showing {Math.min((page - 1) * ITEMS_PER_PAGE + 1, filtered.length)} to{" "}
+            Showing{" "}
+            {Math.min((page - 1) * ITEMS_PER_PAGE + 1, filtered.length)} to{" "}
             {Math.min(page * ITEMS_PER_PAGE, filtered.length)} of {filtered.length} records
           </p>
           <div className="flex gap-2">

@@ -1,19 +1,19 @@
 import PaymentPending from "@/app/components/dashboard/provisional/paymentpending";
-import { ProvisionalPaymentPendingRecord } from "@/app/types/provisional/payment";
+import { ProvisionalPaymentRecord } from "@/app/types/provisional/payment";
 
-const dummyData: ProvisionalPaymentPendingRecord[] = [
+const dummyData: ProvisionalPaymentRecord[] = [
   {
-    membershipNumber: "PM001",
     name: "Rajesh R",
     email: "rajesh.r@example.com",
     mobile: "9876543210",
+    category: "Provisional Registration"
   },
   {
-    membershipNumber: "PM002",
     name: "Divya Mehta",
     email: "divya.mehta@example.com",
     mobile: "9123456789",
-  },
+    category: "Transfer BDS"
+  }
 ];
 
 export default function Page() {

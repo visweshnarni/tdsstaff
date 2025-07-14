@@ -1,6 +1,8 @@
 export interface ProvisionalVerificationRecord {
-  membershipNumber: string;
+  applicationNumber: string;
   name: string;
   email: string;
   mobile: string;
+  date: string;
+  category: string;
 }

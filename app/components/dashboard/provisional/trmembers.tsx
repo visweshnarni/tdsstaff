@@ -2,17 +2,12 @@
 
 import { useMemo, useState } from "react";
 import { TRMemberRecord } from "@/app/types/provisional/trmembers";
-import {
-  Table,
-  TableHeader,
-  TableBody,
-  TableRow,
-  TableHead,
-  TableCell,
-} from "@/components/ui/table";
+import { Table, TableHeader, TableBody, TableRow, TableHead, TableCell } from "@/components/ui/table";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import { ChevronLeft, ChevronRight } from "lucide-react";
+import { Download } from "lucide-react";
+
 
 interface Props {
   data: TRMemberRecord[];
@@ -26,8 +21,8 @@ export default function TRMembers({ data }: Props) {
 
   const filteredData = useMemo(() => {
     return data.filter((item) =>
-      Object.values(item).some((val) =>
-        val.toLowerCase().includes(search.toLowerCase())
+      Object.values(item).some((value) =>
+        value.toLowerCase().includes(search.toLowerCase())
       )
     );
   }, [data, search]);
@@ -39,12 +34,38 @@ export default function TRMembers({ data }: Props) {
     return filteredData.slice(start, start + itemsPerPage);
   }, [filteredData, currentPage]);
 
+  // CSV download logic
+  const downloadCSV = () => {
+    const csvRows = [
+      ["TR Number", "Name", "Email", "Mobile", "Date", "Category"],
+      ...filteredData.map((item) => [
+        item.trNumber,
+        item.name,
+        item.email,
+        item.mobile,
+        item.date,
+        item.category,
+      ]),
+    ];
+
+    const csvContent = csvRows.map((row) => row.join(",")).join("\n");
+    const blob = new Blob([csvContent], { type: "text/csv;charset=utf-8;" });
+    const url = URL.createObjectURL(blob);
+
+    const link = document.createElement("a");
+    link.href = url;
+    link.setAttribute("download", "tr_members.csv");
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+  };
+
   return (
     <div className="rounded-md border bg-white shadow-md overflow-x-auto">
-      {/* Search bar */}
-      <div className="p-4 border-b">
+      {/* Top Bar */}
+      <div className="p-4 border-b flex flex-col md:flex-row items-center justify-between gap-4">
         <Input
-          placeholder="Search by any field"
+          placeholder="Search..."
           className="w-full md:w-1/2"
           value={search}
           onChange={(e) => {
@@ -52,6 +73,14 @@ export default function TRMembers({ data }: Props) {
             setCurrentPage(1);
           }}
         />
+        <Button
+  onClick={downloadCSV}
+  className="flex items-center gap-2 px-4 py-2 bg-[#00694A] hover:bg-[#004d36] text-white rounded-md shadow-sm"
+>
+  <Download className="h-4 w-4" />
+  <span>Download CSV</span>
+</Button>
+
       </div>
 
       {/* Table */}
@@ -61,8 +90,9 @@ export default function TRMembers({ data }: Props) {
             <TableHead className="text-center">TR Number</TableHead>
             <TableHead className="text-center">Name</TableHead>
             <TableHead className="text-center">Email</TableHead>
-            <TableHead className="text-center">Action</TableHead>
             <TableHead className="text-center">Mobile</TableHead>
+            <TableHead className="text-center">Date</TableHead>
+            <TableHead className="text-center">Category</TableHead>
           </TableRow>
         </TableHeader>
         <TableBody>
@@ -72,21 +102,14 @@ export default function TRMembers({ data }: Props) {
                 <TableCell className="text-center">{item.trNumber}</TableCell>
                 <TableCell className="text-center">{item.name}</TableCell>
                 <TableCell className="text-center">{item.email}</TableCell>
-                <TableCell className="text-center">
-                  <Button
-                    variant="outline"
-                    className="text-[#00694A] border-[#00694A] hover:bg-[#00694A] hover:text-white"
-                    onClick={() => alert("TR Action triggered")}
-                  >
-                    View
-                  </Button>
-                </TableCell>
                 <TableCell className="text-center">{item.mobile}</TableCell>
+                <TableCell className="text-center">{item.date}</TableCell>
+                <TableCell className="text-center">{item.category}</TableCell>
               </TableRow>
             ))
           ) : (
             <TableRow>
-              <TableCell colSpan={5} className="text-center py-6 text-gray-500">
+              <TableCell colSpan={6} className="text-center py-6 text-gray-500">
                 No matching records found.
               </TableCell>
             </TableRow>
@@ -98,10 +121,8 @@ export default function TRMembers({ data }: Props) {
       {totalPages > 1 && (
         <div className="flex justify-between items-center px-4 py-3 border-t">
           <p className="text-sm text-gray-600">
-            Showing{" "}
-            {Math.min((currentPage - 1) * itemsPerPage + 1, filteredData.length)} to{" "}
-            {Math.min(currentPage * itemsPerPage, filteredData.length)} of{" "}
-            {filteredData.length} records
+            Showing {Math.min((currentPage - 1) * itemsPerPage + 1, filteredData.length)} to{" "}
+            {Math.min(currentPage * itemsPerPage, filteredData.length)} of {filteredData.length} records
           </p>
           <div className="flex gap-2">
             <Button

@@ -1,7 +1,8 @@
 "use client";
 
-import { useMemo, useState } from "react";
-import { ProvisionalPaymentPendingRecord } from "@/app/types/provisional/payment";
+import { useRouter } from "next/navigation";
+import { useState, useMemo } from "react";
+import { ProvisionalPaymentRecord } from "@/app/types/provisional/payment";
 import {
   Table,
   TableHeader,
@@ -15,7 +16,7 @@ import { Button } from "@/components/ui/button";
 import { ChevronLeft, ChevronRight } from "lucide-react";
 
 interface Props {
-  data: ProvisionalPaymentPendingRecord[];
+  data: ProvisionalPaymentRecord[];
 }
 
 const itemsPerPage = 10;
@@ -23,6 +24,7 @@ const itemsPerPage = 10;
 export default function PaymentPending({ data }: Props) {
   const [search, setSearch] = useState("");
   const [currentPage, setCurrentPage] = useState(1);
+  const router = useRouter();
 
   const filteredData = useMemo(() => {
     return data.filter((item) =>
@@ -32,54 +34,52 @@ export default function PaymentPending({ data }: Props) {
     );
   }, [data, search]);
 
-  const totalPages = Math.ceil(filteredData.length / itemsPerPage);
-
   const paginatedData = useMemo(() => {
     const start = (currentPage - 1) * itemsPerPage;
     return filteredData.slice(start, start + itemsPerPage);
   }, [filteredData, currentPage]);
 
+  const totalPages = Math.ceil(filteredData.length / itemsPerPage);
+
   return (
     <div className="rounded-md border bg-white shadow-md overflow-x-auto">
-      {/* Search bar */}
       <div className="p-4 border-b">
         <Input
           placeholder="Search by any field"
-          className="w-full md:w-1/2"
           value={search}
           onChange={(e) => {
             setSearch(e.target.value);
             setCurrentPage(1);
           }}
+          className="w-full md:w-1/2"
         />
       </div>
 
-      {/* Table */}
-      <Table className="w-full table-auto text-sm">
+      <Table className="w-full text-sm">
         <TableHeader>
           <TableRow>
-            <TableHead className="text-center">Membership Number</TableHead>
             <TableHead className="text-center">Name</TableHead>
             <TableHead className="text-center">Email</TableHead>
             <TableHead className="text-center">Mobile</TableHead>
+            <TableHead className="text-center">Category</TableHead>
             <TableHead className="text-center">Action</TableHead>
           </TableRow>
         </TableHeader>
         <TableBody>
           {paginatedData.length > 0 ? (
-            paginatedData.map((item, idx) => (
-              <TableRow key={idx}>
-                <TableCell className="text-center">{item.membershipNumber}</TableCell>
+            paginatedData.map((item, index) => (
+              <TableRow key={index}>
                 <TableCell className="text-center">{item.name}</TableCell>
                 <TableCell className="text-center">{item.email}</TableCell>
                 <TableCell className="text-center">{item.mobile}</TableCell>
+                <TableCell className="text-center">{item.category}</TableCell>
                 <TableCell className="text-center">
                   <Button
                     variant="outline"
-                    className="text-[#00694A] border-[#00694A] hover:bg-[#00694A] hover:text-white"
-                    onClick={() => alert("Pay action triggered")}
+                    className="text-green-600 border-green-600 hover:bg-green-600 hover:text-white"
+                    onClick={() => router.push(`/dashboard/provisional/paymentpending/accept`)}
                   >
-                    Pay
+                    View
                   </Button>
                 </TableCell>
               </TableRow>
@@ -94,14 +94,11 @@ export default function PaymentPending({ data }: Props) {
         </TableBody>
       </Table>
 
-      {/* Pagination */}
       {totalPages > 1 && (
         <div className="flex justify-between items-center px-4 py-3 border-t">
           <p className="text-sm text-gray-600">
-            Showing{" "}
-            {Math.min((currentPage - 1) * itemsPerPage + 1, filteredData.length)} to{" "}
-            {Math.min(currentPage * itemsPerPage, filteredData.length)} of{" "}
-            {filteredData.length} records
+            Showing {Math.min((currentPage - 1) * itemsPerPage + 1, filteredData.length)} to{" "}
+            {Math.min(currentPage * itemsPerPage, filteredData.length)} of {filteredData.length} records
           </p>
           <div className="flex gap-2">
             <Button
@@ -109,7 +106,6 @@ export default function PaymentPending({ data }: Props) {
               size="icon"
               disabled={currentPage === 1}
               onClick={() => setCurrentPage((prev) => prev - 1)}
-              className="text-[#00694A] border-[#00694A] hover:bg-[#00694A] hover:text-white"
             >
               <ChevronLeft className="h-4 w-4" />
             </Button>
@@ -118,7 +114,6 @@ export default function PaymentPending({ data }: Props) {
               size="icon"
               disabled={currentPage === totalPages}
               onClick={() => setCurrentPage((prev) => prev + 1)}
-              className="text-[#00694A] border-[#00694A] hover:bg-[#00694A] hover:text-white"
             >
               <ChevronRight className="h-4 w-4" />
             </Button>

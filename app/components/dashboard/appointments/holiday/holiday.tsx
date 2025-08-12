@@ -81,35 +81,34 @@ export default function HolidayPage() {
   };
 
   return (
-    <main className="w-full">
-      <div className="flex justify-center">
-        <div className="w-full max-w-4xl">
-          <h1 className="text-3xl font-semibold text-[#00694A] font-francois-one mb-6 text-center">
-            Holiday List
-          </h1>
+    <main className="w-full p-6"> {/* The main container now has padding */}
+      <h1 className="text-3xl font-semibold text-[#00694A] font-francois-one mb-6 text-center">
+        Holiday List
+      </h1>
+      
+      {/* The inner div now occupies the full width */}
+      <div className="w-full">
+        <HolidayTable
+          data={holidays}
+          onEdit={handleEdit}
+          onAddNew={handleAddNew} 
+        />
 
-          <HolidayTable
-            data={holidays}
-            onEdit={handleEdit}
-            onAddNew={handleAddNew}
+        {editingHoliday ? (
+          <HolidayFormEdit
+            open={drawerOpen}
+            onClose={() => setDrawerOpen(false)}
+            onSubmit={handleSubmit}
+            onDelete={handleDelete}
+            defaultValues={editingHoliday}
           />
-
-          {editingHoliday ? (
-            <HolidayFormEdit
-              open={drawerOpen}
-              onClose={() => setDrawerOpen(false)}
-              onSubmit={handleSubmit}
-              onDelete={handleDelete}
-              defaultValues={editingHoliday}
-            />
-          ) : (
-            <HolidayFormAdd
-              open={drawerOpen}
-              onClose={() => setDrawerOpen(false)}
-              onSubmit={handleSubmit}
-            />
-          )}
-        </div>
+        ) : (
+          <HolidayFormAdd
+            open={drawerOpen}
+            onClose={() => setDrawerOpen(false)}
+            onSubmit={handleSubmit}
+          />
+        )}
       </div>
     </main>
   );

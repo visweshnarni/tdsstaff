@@ -22,6 +22,7 @@ const menuItems = [
     children: [
       { label: 'Verification Pending', path: '/dashboard/renewallist/verificationpending' },
       { label: 'Payment Pending', path: '/dashboard/renewallist/paymentpending' },
+      { label: 'Rejected Application', path: '/dashboard/renewallist/rejectedapplication' },
     ],
   },
   {
@@ -38,6 +39,7 @@ const menuItems = [
     children: [
       { label: 'Verification Pending', path: '/dashboard/provisional/verificationpending' },
       { label: 'Payment Pending', path: '/dashboard/provisional/paymentpending' },
+      { label: 'Rejected Application', path: '/dashboard/provisional/rejectedapplication' },
       { label: 'TR Members', path: '/dashboard/provisional/trmembers' },
     ],
   },
@@ -48,6 +50,7 @@ const menuItems = [
       { label: 'Verification Pending', path: '/dashboard/gsl/verificationpending' },
       { label: 'Payment Pending', path: '/dashboard/gsl/paymentpending' },
       { label: 'Approved', path: '/dashboard/gsl/approved' },
+      { label: 'Rejected Application', path: '/dashboard/gsl/rejectedapplication' },
     ],
   },
   {
@@ -57,6 +60,7 @@ const menuItems = [
       { label: 'Verification Pending', path: '/dashboard/nol/verificationpending' },
       { label: 'Payment Pending', path: '/dashboard/nol/paymentpending' },
       { label: 'Approved', path: '/dashboard/nol/approved' },
+      { label: 'Rejected Application', path: '/dashboard/nol/rejectedapplication' },
     ],
   },
   {

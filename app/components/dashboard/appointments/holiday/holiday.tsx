@@ -81,13 +81,13 @@ export default function HolidayPage() {
   };
 
   return (
-    <main className="w-full p-6"> {/* The main container now has padding */}
+    <main className="w-full "> {/* The main container now has padding */}
       <h1 className="text-3xl font-semibold text-[#00694A] font-francois-one mb-6 text-center">
         Holiday List
       </h1>
       
       {/* The inner div now occupies the full width */}
-      <div className="w-full">
+      <div className="w-full ">
         <HolidayTable
           data={holidays}
           onEdit={handleEdit}

@@ -68,7 +68,7 @@ const menuItems = [
     isDropdown: true,
     children: [
       { label: "Today's", path: '/dashboard/appointments/todays' },
-      { label: 'Past Appointments', path: '/dashboard/appointments/past' },
+      { label: 'View Appointments', path: '/dashboard/appointments/view' },
       { label: 'Holidays', path: '/dashboard/appointments/holidays' },
     ],
   },

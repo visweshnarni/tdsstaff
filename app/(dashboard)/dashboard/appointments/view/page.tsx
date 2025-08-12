@@ -1,5 +1,5 @@
-import PastAppointments from "@/app/components/dashboard/appointments/past";
-import { PastAppointmentRecord } from "@/app/types/appointments/past";
+import PastAppointments from "@/app/components/dashboard/appointments/view";
+import { PastAppointmentRecord } from "@/app/types/appointments/view";
 
 const dummyData: PastAppointmentRecord[] = [
   {
@@ -20,6 +20,16 @@ const dummyData: PastAppointmentRecord[] = [
     email: "sneha@example.com",
     mobile: "9123456789",
     timeAndDate: "2025-06-26 02:30 PM",
+    category: "Endodontics",
+  },
+  {
+    applicationNumber: "APP1003",
+    membershipNumber: "MEM1003",
+    type: "Review",
+    name: "Dr. Sneha Reddy",
+    email: "sneha@example.com",
+    mobile: "9123456789",
+    timeAndDate: "2025-09-26 02:30 PM",
     category: "Endodontics",
   },
 ];

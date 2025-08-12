@@ -40,15 +40,15 @@ export default function TotalDentist({ data }: Props) {
   }, [filteredData, currentPage]);
 
   // CSV download logic
-  const downloadCSV = () => {
-    const headers = [
-      "Membership Number",
-      "Name",
-      "Email",
-      "Mobile",
-      "Date",
-      "Category",
-    ];
+  // const downloadCSV = () => {
+  //   const headers = [
+  //     "Membership Number",
+  //     "Name",
+  //     "Email",
+  //     "Mobile",
+  //     "Date",
+  //     "Category",
+  //   ];
 
     const rows = filteredData.map((item) => [
       item.membershipNumber,
@@ -59,18 +59,18 @@ export default function TotalDentist({ data }: Props) {
       item.category,
     ]);
 
-    const csvContent =
-      "data:text/csv;charset=utf-8," +
-      [headers, ...rows].map((row) => row.join(",")).join("\n");
+  //   const csvContent =
+  //     "data:text/csv;charset=utf-8," +
+  //     [headers, ...rows].map((row) => row.join(",")).join("\n");
 
-    const encodedUri = encodeURI(csvContent);
-    const link = document.createElement("a");
-    link.setAttribute("href", encodedUri);
-    link.setAttribute("download", "total_dentists.csv");
-    document.body.appendChild(link);
-    link.click();
-    document.body.removeChild(link);
-  };
+  //   const encodedUri = encodeURI(csvContent);
+  //   const link = document.createElement("a");
+  //   link.setAttribute("href", encodedUri);
+  //   link.setAttribute("download", "total_dentists.csv");
+  //   document.body.appendChild(link);
+  //   link.click();
+  //   document.body.removeChild(link);
+  // };
 
   return (
     <div className="rounded-md border bg-white shadow-md overflow-x-auto">
@@ -85,13 +85,13 @@ export default function TotalDentist({ data }: Props) {
             setCurrentPage(1);
           }}
         />
-        <Button
+        {/* <Button
           onClick={downloadCSV}
           className="bg-[#00694A] hover:bg-[#004d36] text-white"
         >
           <Download className="mr-2 h-4 w-4" />
           Download CSV
-        </Button>
+        </Button> */}
       </div>
 
       {/* Table */}

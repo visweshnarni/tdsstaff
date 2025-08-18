@@ -7,7 +7,7 @@ const dummyData: EventRecord[] = [
     startDate: "2025-08-10",
     endDate: "2025-08-12",
     venue: "Hyderabad International Convention Centre",
-    cmePoints: "6",
+    cmePoints: "5",
     website: "https://ndc2025.org",
   },
   {
@@ -15,7 +15,7 @@ const dummyData: EventRecord[] = [
     startDate: "2025-09-15",
     endDate: "2025-09-16",
     venue: "Chennai Trade Center",
-    cmePoints: "4",
+    cmePoints: "6",
     website: "https://oralhealthsummit.in",
   },
 ];

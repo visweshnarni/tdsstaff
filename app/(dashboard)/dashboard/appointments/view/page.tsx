@@ -32,6 +32,16 @@ const dummyData: PastAppointmentRecord[] = [
     timeAndDate: "2025-09-26 02:30 PM",
     category: "Endodontics",
   },
+  {
+    applicationNumber: "APP1004",
+    membershipNumber: "MEM1004",
+    type: "Review",
+    name: "Dr. Swetha Reddy",
+    email: "swetha@example.com",
+    mobile: "9123456889",
+    timeAndDate: "2025-09-26 02:50 PM",
+    category: "Endodontics",
+  },
 ];
 
 export default function Page() {

@@ -12,6 +12,7 @@ const dummyData: TodayAppointmentRecord[] = [
     timeAndDate: "2025-07-08 10:30 AM",
     category: "General",
   },
+  
   {
     applicationNumber: "APP002",
     membershipNumber: "MEM002",

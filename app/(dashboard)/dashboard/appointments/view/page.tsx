@@ -22,16 +22,7 @@ const dummyData: PastAppointmentRecord[] = [
     timeAndDate: "2025-06-26 02:30 PM",
     category: "Endodontics",
   },
-  {
-    applicationNumber: "APP1003",
-    membershipNumber: "MEM1003",
-    type: "Review",
-    name: "Dr. Sneha Reddy",
-    email: "sneha@example.com",
-    mobile: "9123456789",
-    timeAndDate: "2025-09-26 02:30 PM",
-    category: "Endodontics",
-  },
+  
   {
     applicationNumber: "APP1004",
     membershipNumber: "MEM1004",

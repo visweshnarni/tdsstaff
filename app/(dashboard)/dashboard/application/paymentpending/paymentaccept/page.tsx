@@ -10,7 +10,7 @@ export default function PaymentAcceptPage() {
           Payment Verification Page
         </h1>
         {/* Future payment details can go here */}
-        <p className="text-center text-gray-500">Payment details will be show here.</p>
+        <p className="text-center text-gray-500">Payment details will be shown here.</p>
       </div>
 
       <div className="flex justify-center gap-6 mt-10">

@@ -10,7 +10,7 @@ export default function VerificationAcceptPage() {
           Application Verification Page
         </h1>
         {/* Placeholder for future details */}
-        <p className="text-center text-gray-500">Details will be show here.</p>
+        <p className="text-center text-gray-500">Details will be shown here.</p>
       </div>
 
       <div className="flex justify-center gap-6 mt-10">

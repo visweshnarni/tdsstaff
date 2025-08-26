@@ -10,7 +10,7 @@ export default function PhysicalVerificationAcceptPage() {
           Physical Verification Approval Page
         </h1>
         <p className="text-center text-gray-500">
-          Physical verification details will be show here.
+          Physical verification details will be shown here.
         </p>
       </div>
 
